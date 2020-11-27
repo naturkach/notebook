@@ -1,0 +1,23 @@
+ get list of process of IE and put Name, Id, StartTime, PagedMemorySize in CSV/XML/JSON/YAML files
+
+$processes =Get-Process -name "iexplore" | select-Object -Property Name, Id, StartTime, PagedMemorySize
+
+$processes | ConvertTo-Csv | Add-Content -Path .\process.csv
+$processes | ConvertTo-Json | Set-Content -Path .\process.json
+$xml = [xml]$($processes | ConvertTo-Xml -Depth 2)
+$xml.Save($( Resolve-Path ./).Path + "\process.xml")
+
+
+$HashTableDAta = foreach ($process in $processes) {@{ $processes.IndexOf($process) = @{
+                                                        Name = "$($process.Name)"; 
+                                                        Id = $process.id; 
+                                                        StartT = $process.StartTime;
+                                                        Memory = $process.PagedMemorySize }}}
+                                                       # Path = "$($process.path)"}}}
+
+ConvertTo-Yaml -Data $HashTableDAta -OutFile $($( Resolve-path ./).Path + "\process.yaml") -Force
+
+$CSVdata = Get-Content -Path .\process.csv | ConvertFrom-Csv
+$JSONdata = Get-Content -Path .\process.json | ConvertFrom-Json
+$XMLdata = [xml]$(Get-Content .\process.xml)
+#$YAMLdata = ConvertFrom-Yaml -Yaml $($(Get-Content .\process.yaml) -join "`n" )

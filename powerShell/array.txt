@@ -1,0 +1,23 @@
+1.      Create two-dimensional strong defined string array.
+> [string[]]$strarr = @(("a","b","c"),("d","e","f"))
+
+2.      Put three different hash-tables in array. Retrieve value from the second key in third hash table in array.
+
+>$arr = @(@{ a = 1; b = 2; c = 3}, @{d = 4; e = 5; f = 6}, @{g = 7; h = 8; i = 9})
+>$($arr[2].GetEnumerator())[2]
+
+
+3.      Create nested hash-table and retrieve values by keys from it.
+
+$hastable1 = @{ a = 1; b = 2; c = 3}
+$hastable2 = @{ b = 1; c = 2; d = 3}
+$nested = @{}
+$nested.add("hastable1", $hastable1)
+$nested.add("hastable2", $hastable2)
+$nested.hastable1.a
+
+
+4.      Transform hash-table into ordered hash-table sorted by value.
+
+$hashTable = @{a = 12; g = 4; h = 1; t = 7; d = 8}
+$hashTable.GetEnumerator()|sort Value

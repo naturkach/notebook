@@ -1,0 +1,23 @@
+[CmdletBinding()]
+Param()
+
+$EList = 5, 1, 4, 2, 8, 2
+
+$length = $EList.Length
+$hasChanged = $true
+$steps=0
+
+while ($hasChanged) {
+$hasChanged = $false
+    for($i=0; $i -lt $length-1; $i++){
+    
+        if($Elist[$i] -gt $Elist[$i+1]){
+            $Elist[$i], $Elist[$i+1] = $Elist[$i+1], $Elist[$i]
+            $message = "step-" +$steps +" "+ $EList
+            Write-Verbose $message
+            $steps ++
+            $hasChanged = $true
+        }
+    }
+ }
+ Write-Host "sorted" $EList

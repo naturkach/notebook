@@ -1,0 +1,19 @@
+> Get-Process -name "svchost" | Format-Wide -Property Id -Column 5  #view in columns but jast one param
+> Get-Process -name "svchost" | Format-List Name, Id, CPU   #view
+> Get-Process -name "svchost" | Format-Table Name, Id, CPU  #rtable out
+Get-Process -name "svchost" | Select-Object -Property Name, Id, Cpu, @{lable="Memory(MB)";expression={$_.PagedMemorySize/1024/1024/8}} | Format-Table 
+@{..} - калькурируемое свойство (можно определить как переменную)
+    lable - имя
+    expression - вычисление свойства тоже в {}  $_ = переменная pipe приходит из pipeline
+$TimeNow = Get-Date
+
+$runningHours = @{label = "Runing(Hours)";expression={ $($TimeNow - $_.StartTime)
+.Days * 24 + $($TimeNow - $_.StartTime).Hours}}
+
+PS C:\Users\Administrator> Get-Process -name "svchost" | Select-Object -Property Name, Id, Cpu, $runningHours | Format-Table
+
+Name      Id      CPU Runing(Hours)
+----      --      --- -------------
+svchost  232     1.75             1
+svchost  652  1.09375             1
+svchost  708      0.5             1

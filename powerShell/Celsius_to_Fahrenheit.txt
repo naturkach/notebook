@@ -1,0 +1,21 @@
+[string]$str = $args[0]
+
+[int]$number = $str.Remove($str.Length-1)
+
+if($str.Contains("C")){
+    #F = C х 1,8 + 32
+    $result = ($number * 1.8) + 32    
+    $scale = "Fahrenheit"    
+    }
+else {
+    if($str.Contains("F")){
+        #C = (F — 32) : 1,8
+        $result = ($number - 32) / 1.8
+        $scale = "Celsius"       
+        }
+    }
+
+$result = [math]::Round($result)
+$out = $str + " is " + $result + " in " + $scale
+    
+Write-Output $out
