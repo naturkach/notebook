@@ -1,0 +1,39 @@
+get from selected remote computer the following data:
+#                    CPU model and max clock speed
+#                    Amount of RAM (total, free)
+#                    OS disk free space
+#                    OS version
+#                    Installed hot fixes
+#                    List of stopped services
+
+#get remote pc
+[string]$remPC = $args[0]
+
+if ($remPC){
+    #add ip to trasted hosts:
+    Set-Item WSMan:\localhost\Client\TrustedHosts -Value $remPC -Force
+    $ValueTable = [ordered]@{}
+
+    $CPUClockSpeed = Get-WmiObject win32_processor -ComputerName "$remPC" | Select-Object -ExpandProperty MaxClockSpeed
+    $ValueTable.add("CPU max clock speed","$CPUClockSpeed")
+    $Model = Get-WmiObject win32_processor -ComputerName "$remPC" | Select-Object -ExpandProperty Name
+    $ValueTable.add("CPU model","$Model")
+    $RAMtotal = Get-CIMInstance Win32_OperatingSystem -ComputerName "$remPC" | Select -ExpandProperty TotalVisibleMemorySize
+    $ValueTable.add("Amout of RAM(total)","$RAMtotal")
+    $RAMfree = Get-CIMInstance Win32_OperatingSystem -ComputerName "$remPC" | Select -ExpandProperty FreePhysicalMemory
+    $ValueTable.add("Amount of RAm(free)","$RAMfree")
+    $OSdiskFreeSpace = Get-WmiObject -Class Win32_logicaldisk -Filter "DeviceID = 'C:'" -ComputerName "$remPC" | Select-Object -ExpandProperty freeSpace
+    $ValueTable.add("OS disk free space", "$OSdiskFreeSpace")
+    $OSVersion = Get-CIMInstance Win32_OperatingSystem -ComputerName "$remPC" | select -ExpandProperty version
+    $ValueTable.add("OS version", "$OSVersion")
+    $HotFixes = Get-CIMInstance Win32_QuickFixEngineering -ComputerName "$remPC" | select -ExpandProperty HotFixId
+    $ValueTable.add("Installed hot fixes", "$HotFixes")
+    $StopedServices = Get-WmiObject -Query "Select * FROM win32_service where state='Stopped'" -ComputerName "$remPC" | Select-Object -ExpandProperty Name
+    $ValueTable.add("List of stopped services", "$StopedServices")
+
+    $ValueTable
+        
+}
+else {
+    echo "enter ip or pc name"
+}

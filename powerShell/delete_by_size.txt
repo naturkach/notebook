@@ -1,0 +1,16 @@
+function Delete-BigFiles {
+     [CmdletBinding()]
+     Param(
+        [string]$folderPath,
+        [int]$biggerThen
+     )
+     Process{        
+        $Files = Get-ChildItem $folderPath | Where-Object {$_.Length -gt ($biggerThen*1000)}
+
+        foreach ($file in $Files )
+        {
+            Write-Host "removed" $file
+            Remove-Item $file -Force    
+        }
+     }
+}

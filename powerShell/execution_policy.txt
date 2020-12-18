@@ -1,0 +1,9 @@
+1.      Set PowerShell execution policy for local computer in Remote Sign only mode.
+PS C:\Users\Administrator> Set-ExecutionPolicy -Scope LocalMachine -ExecutionPolicy RemoteSigned
+PS C:\Users\Administrator> Get-ExecutionPolicy
+RemoteSigned
+
+2.      Set PowerShell execution policy in Restricted only mode. Run module1-task2.ps1 script from cmd tool using bypass command option for PowerShell.
+
+C:\Users\Administrator>powershell.exe -executionpolicy unrestricted ./module1-task2.ps1
+It could be run using bypass parameter

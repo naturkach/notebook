@@ -1,0 +1,55 @@
+#Write a script to find sequences of lowercase letters joined with underscore or dash.
+
+[string]$str = $args[0]
+
+if($str.Contains("-"))
+    {
+        $find = $str | Where-Object { $_ -match '[a-z]+\-[a-z]+'} | ForEach-Object{ $Matches[0] }
+    }
+else
+    {
+        if($str.Contains("_"))
+        {
+            $find = $str | Where-Object { $_ -match '[a-z]+_[a-z]+'} | ForEach-Object{ $Matches[0] }
+        }
+    }
+
+
+Write-Output $find
+===================================
+find sequences of lowercase letters joined with underscore or dash.
+
+[string]$str = $args[0]
+
+$lastword  = $str | Where-Object {$_ -match '\w+$'} | ForEach-Object {$Matches[0]}
+
+Write-Output $lastword
+=================================*
+
+retrieve the first 140 characters from a string?
+$a.SubString(0,140)
+
+================
+find all words which are at least 6 characters long in a string.
+
+[string]$str = $args[0]
+$words = $str.Split(" ") | Where-Object {$_ -match  "[A-Za-z]{6,}"} | ForEach-Object{ $Matches[0] }
+Write-Output $words
+================
+
+remove multiple spaces in a string.
+[string]$str = $args[0]
+
+$newstr = $str | foreach {$_ -replace "\ {1,} ", " "}
+Write-Output $newstr
+
+==================
+find the occurrences of 10 most common words in a given text. 
+$hash = @{}
+$formattext = $test -replace '[,\.\[\]\(\)]',''
+$formattext.Split(" ") | sort -Unique | foreach {
+    $numb = ($test | Select-String -Pattern "$_" -AllMatches).Matches.Count
+    $hash.add($_,$numb)        
+}
+$hash.GetEnumerator()| Sort Value -Descending | Select-Object -First 10
+-------------------
