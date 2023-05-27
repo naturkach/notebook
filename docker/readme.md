@@ -1,0 +1,5 @@
+- Update the package index: sudo yum update -y
+- Install Docker: sudo yum install docker -y
+- Start the Docker service: sudo service docker start
+- Add the ec2-user to the docker group: sudo usermod -a -G docker ec2-user
+- Verify the installation by running the hello-world container: sudo docker run hello-world
