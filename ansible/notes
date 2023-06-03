@@ -1,0 +1,7 @@
+ ansible.cfg - create to add config file = /home/ec2-user/ansible/ansible.cfg
+
+
+$ cat ansible.cfg
+[defaults]
+host_key_checking = false
+inventory         = ./hosts
