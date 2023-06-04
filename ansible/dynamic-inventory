@@ -41,3 +41,16 @@ cat aws_ec2
 ---
 ansible_ssh_private_key_file : /home/ec2-user/.ssh/tfkey
 </code>
+------------------------------------------------------
+with playbook:
+ansible-playbook -i aws_ec2.yaml myplay.yaml
+
+]$ cat myplay.yaml
+---
+- name: test connection to linux
+  hosts: tag_Name_ansible_node
+  become: yes
+  tasks:
+    - ping:
+ ----------------------------
+
