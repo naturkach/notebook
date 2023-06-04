@@ -23,6 +23,7 @@ tags:
 <br><b>playbook start from task</b> ansible-playbook test.yml --start-at-task 'second task in play'
 <br><b>ask on each step</b> ansible-playbook test.yml --step 
   
+<br><b>ansible all --setup</b> - print all vars
   
 show additional info of tasks execution:
   - add -v option: ansible-playbook first.yml --tags "please_ping" -v
