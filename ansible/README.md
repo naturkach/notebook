@@ -27,6 +27,12 @@ tags:
   
 show additional info of tasks execution:
   - add -v option: ansible-playbook first.yml --tags "please_ping" -v
+
+  
+run playbook in check mode:
+<br> ansible-playbook firstplay.yml --check
+  
+  
 <code>
 ---
 - hosts:localhost
