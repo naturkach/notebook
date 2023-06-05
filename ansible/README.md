@@ -22,8 +22,12 @@ tags:
   <br><b></b>
 <br><b>playbook start from task</b> ansible-playbook test.yml --start-at-task 'second task in play'
 <br><b>ask on each step</b> ansible-playbook test.yml --step 
+<br><b>vault</b> ansible-vault create test1.yml
+<br>- run: ansible-playbook test.yml --ask-vault-pass
+<br>- encrypt: ansible-vault encrypt my-file.yml
+<br>- edit: ansible-vault edit my-file.yml
   
-<br><b>ansible all --setup</b> - print all vars
+<br><b>print all vars</b> ansible all --setup
   
 show additional info of tasks execution:
   - add -v option: ansible-playbook first.yml --tags "please_ping" -v
