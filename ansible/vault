@@ -1,0 +1,23 @@
+<b>vault</b> ansible-vault create test1.yml
+- run: ansible-playbook test.yml --ask-vault-pass
+- encrypt: ansible-vault encrypt my-file.yml
+- edit: ansible-vault edit my-file.yml
+
+
+encrypt only one var:
+ansible-vault encrypt_dtring --vault-id @prompt mysecret-password
+
+use in playbook:
+
+vars:
+  secret: !vault |
+          @ANSIBLE_VAULT......
+          
+tasks:
+  - name: Print
+    debug:
+      var: secret
+      
+run this playbook: ansible-playbook test.yml --ask-vault-pass
+      
+
