@@ -51,3 +51,14 @@ show additional info of tasks execution:
 -----
   <b>run playbook from selected task:</b><br>
 ansible-playbook play.yml --start-at-task 'install NTP'
+
+----
+conditions:
+<code>
+tasks:
+  - name: upgrade redhat
+    when: ansible_os_family == "Redhat"
+    yum: name=* state=latest
+</code>
+  
+-----------
