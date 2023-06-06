@@ -11,5 +11,8 @@
 <tr>    <td>get access to the pod</td> <td> kubectl exec -it podname -- /bin/bash </td>  </tr>
 <tr>    <td>list app logs </td> <td> kubectl logs pod-name -n namespace-name</td>  </tr>
 <tr>    <td>get services (with ports and ips) </td> <td>  kubectl get services -n development -o wide</td>  </tr>
-<tr>    <td>clear created config </td> <td> kubectl delete -f some-config.yaml</td>  </tr>
+<tr>    <td>clear created config </td> <td> kubectl delete -f some-config.                     yaml</td>  </tr>
+<tr>    <td>to see all kube objects and API version</td> <td>kubectl api-resources</td>  </tr>
+<tr>    <td>resent logs on etcd minikube</td> <td>kubectl logs etcd-minikube -n kube-system | jq .</td>  </tr>
+<tr>    <td></td> <td></td>  </tr>
 </table>
