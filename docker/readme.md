@@ -9,4 +9,5 @@
 <tr> <td>build </td> <td>docker build -t <imagename> . </td> </tr>
 <tr> <td>run </td> <td> docker run --rm --name <container name> -p <external port>:<internal port> <immage name> </td> </tr>
 <tr> <td>local registry:  </td> <td> docker run --name local-registry -d --restart=always -p 5000:5000 registry:2 </td> </tr>
+<tr> <td> </td> <td> </td> </tr>
   </table>
