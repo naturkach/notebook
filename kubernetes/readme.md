@@ -15,6 +15,10 @@
 <tr>    <td>to see all kube objects and API version</td> <td>kubectl api-resources</td>  </tr>
 <tr>    <td>resent logs on etcd minikube</td> <td>kubectl logs etcd-minikube -n kube-system | jq .</td>  </tr>
 <tr>    <td>get statuses</td> <td>kubectl get componentstatuses</td>  </tr>
+<tr>    <td>cluster-info</td> <td>kubectl cluster-info</td>  </tr>
+  <tr>    <td></td> <td></td>  </tr>
+  <tr>    <td></td> <td></td>  </tr>
+  
   
 
 </table>
