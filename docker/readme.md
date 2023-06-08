@@ -3,3 +3,8 @@
 - Start the Docker service: sudo service docker start
 - Add the ec2-user to the docker group: sudo usermod -a -G docker ec2-user
 - Verify the installation by running the hello-world container: sudo docker run hello-world
+
+
+
+<br>docker build -t <imagename> .
+<br>docker run --rm --name <container name> -p <external port>:<internal port> <immage name>
