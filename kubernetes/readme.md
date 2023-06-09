@@ -11,8 +11,7 @@
 <tr>    <td>print namespaces</td><td>kubectl get namespaces</td>  </tr>
 <tr>    <td>apply template</td><td>kubectl apply -f namespace.yml</td>  </tr>
 <tr>    <td>get deploymnets in developmant namespace</td><td> kubectl get deploymnets -n development</td>  </tr>
-<tr>    <td>get pods</td><td> kubectl get pods -n development</td>  </tr>
-<tr>    <td>get pod info </td> <td> kubectl describe pod pod-name -n namespace-name <br> If a pod has been running for a while, Kubernetes will assume it is healthy and not show its events.</td>  </tr>
+
 <tr>    <td>get ips of pods</td> <td> kubectl get pods -n development -o wide</td>  </tr>
 <tr>    <td>get access to the pod</td> <td> kubectl exec -it podname -- /bin/bash </td>  </tr>
 <tr>    <td>list app logs </td> <td> kubectl logs pod-name -n namespace-name</td>  </tr>
@@ -23,10 +22,14 @@
 <tr>    <td>get statuses</td> <td>kubectl get componentstatuses</td>  </tr>
 <tr>    <td>cluster-info</td> <td>kubectl cluster-info</td>  </tr>
 <tr>    <td></td> <td>kubectl get nodes</td>  </tr>
+<tr>    <td>lists the pods from all the namespaces</td><td>kubectl get pods -A</td>  </tr>
+<tr>    <td>get pods</td><td> kubectl get pods -n development</td>  </tr>
+<tr>    <td>get pod info </td> <td> kubectl describe pod pod-name -n namespace-name <br> If a pod has been running for a while, Kubernetes will assume it is healthy and not show its events.</td>  </tr>
 <tr>    <td>create pod hello manually</td> <td>kubectl run hello --image=naturkach/k8sphp:ver2 --port=80</td>  </tr>
 <tr>    <td>delete pod manually</td> <td>kubectl delete pods hello</td>  </tr>
 <tr>    <td>enter to the pod</td> <td>kubectl exec -it <podname> -- sh</td>  </tr>
-<tr>    <td>port-forward to pod manually</td> <td>kubectl port-forward hello 8080:80</td>  </tr
+<tr>    <td>port-forward to pod manually</td> <td>kubectl port-forward hello 8080:80</td>  </tr>
+
   <tr>    <td></td> <td></td>  </tr
   <tr>    <td></td> <td></td>  </tr
   <tr>    <td></td> <td></td>  </tr>
