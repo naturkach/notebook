@@ -17,8 +17,15 @@
 <tr>    <td>get statuses</td> <td>kubectl get componentstatuses</td>  </tr>
 <tr>    <td>cluster-info</td> <td>kubectl cluster-info</td>  </tr>
 <tr>    <td></td> <td>kubectl get nodes</td>  </tr>
-  <tr>    <td></td> <td></td>  </tr>
+  <tr>    <td><hr></td> <td><hr></td>  </tr>
 <tr>    <td>minikube</td> <td> minikube start/stop/delete <br> start --cpus=3 --memory=8gb --disk-size=10gb</td>  </tr>
-  
+<tr>    <td><a href='https://kind.sigs.k8s.io/docs/user/quick-start/#installation'>kind k8s cluster</a></td> <td></td>  </tr>
+<tr>    <td><a href='https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/'>kubectl</a></td> <td></td>  </tr>
+<tr>    <td><a href='https://kubernetes.io/docs/home/'> k8s documentation</a></td> <td></td>  </tr>
+<tr>    <td><a href='https://kubernetes.io/docs/tutorials/kubernetes-basics/'> kuber tutorial</a></td> <td></td>  </tr>
+<tr>    <td></td> <td></td>  </tr>
+  <tr>    <td></td> <td></td>  </tr>
+  <tr>    <td></td> <td></td>  </tr>
+  <tr>    <td></td> <td></td>  </tr>
 
 </table>
