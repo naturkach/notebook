@@ -1,10 +1,10 @@
-<tr>    <td>lists the pods from all the namespaces</td><td>kubectl get pods -A</td>  </tr>
-<tr>    <td>get pods</td><td> kubectl get pods -n development</td>  </tr>
-<tr>    <td>get pod info </td> <td> kubectl describe pod pod-name -n namespace-name <br> If a pod has been running for a while, Kubernetes will assume it is healthy and not show its events.</td>  </tr>
-<tr>    <td>create pod hello manually</td> <td>kubectl run hello --image=naturkach/k8sphp:ver2 --port=80</td>  </tr>
-<tr>    <td>delete pod manually</td> <td>kubectl delete pods hello</td>  </tr>
-<tr>    <td>enter to the pod</td> <td>kubectl exec -it <podname> -- sh</td>  </tr>
-<tr>    <td>port-forward to pod manually</td> <td>kubectl port-forward hello 8080:80</td>  </tr>
+lists the pods from all the namespaces  kubectl get pods -A
+get pods                                kubectl get pods -n development
+get pod info                            kubectl describe pod pod-name -n namespace-name 
+create pod hello manually               kubectl run hello --image=naturkach/k8sphp:ver2 --port=80
+delete pod manually                     kubectl delete pods hello
+enter to the pod                        kubectl exec -it <podname> -- sh
+port-forward to pod manually            kubectl port-forward hello 8080:80
 
 kubectl describe pod my-web
 ----------------------------------------
