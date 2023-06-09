@@ -1,0 +1,32 @@
+<tr>    <td>lists the pods from all the namespaces</td><td>kubectl get pods -A</td>  </tr>
+<tr>    <td>get pods</td><td> kubectl get pods -n development</td>  </tr>
+<tr>    <td>get pod info </td> <td> kubectl describe pod pod-name -n namespace-name <br> If a pod has been running for a while, Kubernetes will assume it is healthy and not show its events.</td>  </tr>
+<tr>    <td>create pod hello manually</td> <td>kubectl run hello --image=naturkach/k8sphp:ver2 --port=80</td>  </tr>
+<tr>    <td>delete pod manually</td> <td>kubectl delete pods hello</td>  </tr>
+<tr>    <td>enter to the pod</td> <td>kubectl exec -it <podname> -- sh</td>  </tr>
+<tr>    <td>port-forward to pod manually</td> <td>kubectl port-forward hello 8080:80</td>  </tr>
+
+kubectl describe pod my-web
+----------------------------------------
+manage pods from manifest:
+kubectl apply -f pod-manifest-ver1.yaml
+kubectl delete -f pod-manifest-ver1.yaml 
+
+kubectl port-forward my-web 8888:80
+
+cat pod-manifest-ver1.yaml 
+apiVersion : v1
+kind: Pod
+metadata:
+  name: my-web
+  labels:
+    env: prod
+    app: main
+    owner: myname
+spec:
+  containers:
+    - name: container-apache
+      image: naturkach/k8sphp:ver2
+      ports:
+        - containerPort: 80
+------------------------------------------------
