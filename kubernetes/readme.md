@@ -29,9 +29,15 @@
 <tr>    <td>delete pod manually</td> <td>kubectl delete pods hello</td>  </tr>
 <tr>    <td>enter to the pod</td> <td>kubectl exec -it <podname> -- sh</td>  </tr>
 <tr>    <td>port-forward to pod manually</td> <td>kubectl port-forward hello 8080:80</td>  </tr>
-
-  <tr>    <td></td> <td></td>  </tr
-  <tr>    <td></td> <td></td>  </tr
+<tr>    <td>create deployment</td> <td>kubectl create deployment firstdep --image naturkach/k8sphp:ver2</td>  </tr
+  <tr>    <td>check deployments</td> <td>kubectl get deploy</td>  </tr
+  <tr>    <td>get deployments info</td> <td>kubectl describe deployments firstdep</td>  </tr
+  <tr>    <td>scale deployment up to 2 pods</td> <td>kubectl scale deployment firstdep --replicas 2</td>  </tr>
+  <tr>    <td>autoscaling on all cpu load</td> <td>kubectl autoscale deployment firstdep --min=1 --max=6 --cpu-percent=80</td>  </tr>
+  <tr>    <td>show scaling Horizontal Pod Autoscaler (HPA) </td> <td>kubectl get hpa</td>  </tr>
+  <tr>    <td>returns resource utilization metrics for the pods.</td> <td>kubectl top pod </td>  </tr>
+  <tr>    <td>Check that the Metrics Server is accessible from the node where you are running kubectl</td> <td>curl http://localhost:10255/metrics </td>  </tr>
+  <tr>    <td>deploument history</td> <td>kubectl rollout history deployment/firstdep</td>  </tr>
+  <tr>    <td>deployment status</td> <td>kubectl rollout status deployment/firstdep</td>  </tr>
   <tr>    <td></td> <td></td>  </tr>
-
 </table>
