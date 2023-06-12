@@ -1,6 +1,10 @@
 pre:
 kubectl create deployment first-eks-deployment --image naturkach/k8sphp:ver2
+kubectl get deployment
 kubectl scale deployment first-eks-deployment --replicas 3
+kubectl expose deployment first-eks-deployment --type=ClusterIP --port 80       create service with type ClusterIP
+kubectl expose deployment first-eks-deployment --type=NodePort --port 80        create service with type NodePort
+kubectl expose deployment first-eks-deployment --type=LoadBalancer --port 80   create service with type LoadBalancer
 
 create service maually: 
  kubectl expose deployment first-eks-deployment --type=ClusterIP --port 80
@@ -38,3 +42,76 @@ type=LoadBalancer
  first-eks-deployment   LoadBalancer   10.100.17.62   aa1df72a510544bcb8197e1ebf92912f-1613064369.eu-north-1.elb.amazonaws.com   80:32317/TCP   14s
 
 now can be accessed from LB name
+
+
+----------------------------------------------------------------------
+https://github.com/adv4000/k8s-lessons/blob/master/Lesson-10-Services/service-3-loadbalancer-autoscaling.yaml
+
+manifest:
+
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: my-web-deployment-autoscaling
+  labels:
+    app : my-k8s-deployment
+spec:
+  selector:
+    matchLabels:
+      project: xyz
+  template:
+    metadata:
+      labels:
+        project: xyz   # Service will look for those PODS Labels!!!
+    spec:
+      containers:
+        - name : xyz-web
+          image: adv4000/k8sphp:latest
+          ports:
+            - containerPort: 80
+
+---
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: my-autoscaling
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v2beta1v1
+    kind: Deployment
+    name: my-web-deployment-autoscaling
+  minReplicas: 2
+  maxReplicas: 6
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      targetAverageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      targetAverageUtilization: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-autoscaling-pod-service
+  labels:
+     env  : prod
+     owner: DenisAstahov
+spec:
+  selector:
+    project: xyz      # Selecting PODs with those Labels
+  ports:
+    - name      : app-listener
+      protocol  : TCP
+      port      : 80  # Port on Load Balancer
+      targetPort: 80  # Port on Pod
+  type: LoadBalancer
+
+
+------------------
+autoscaling:
+https://github.com/kubernetes/autoscaler
+https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/
