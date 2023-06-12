@@ -1,0 +1,40 @@
+pre:
+kubectl create deployment first-eks-deployment --image naturkach/k8sphp:ver2
+kubectl scale deployment first-eks-deployment --replicas 3
+
+create service maually: 
+ kubectl expose deployment first-eks-deployment --type=ClusterIP --port 80
+
+delete:
+kubectl delete svc first-eks-deployment
+
+
+$ kubectl get services
+NAME                   TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+first-eks-deployment   ClusterIP   10.100.185.38   <none>        80/TCP    19s
+kubernetes             ClusterIP   10.100.0.1      <none>        443/TCP   31m
+
+you can check from node: $ curl 10.100.185.38
+
+-------------------------------------------------------------------------------------
+type=NodePort:
+
+:~/kuber/adv$ kubectl expose deployment first-eks-deployment --type=NodePort --port 80
+service/first-eks-deployment exposed
+C:~/kuber/adv$ kubectl get svc
+NAME                   TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
+first-eks-deployment   NodePort    10.100.242.224   <none>        80:31465/TCP   17s
+kubernetes             ClusterIP   10.100.0.1       <none>        443/TCP        74m
+
+if nodes has external ip you can access from i-net from thisip:31465
+check node ips:
+$ kubectl describe nodes | grep External
+
+--------------------------------------------------------------------------------------
+
+type=LoadBalancer
+ kubectl expose deployment first-eks-deployment --type=LoadBalancer --port 80
+ 
+ first-eks-deployment   LoadBalancer   10.100.17.62   aa1df72a510544bcb8197e1ebf92912f-1613064369.eu-north-1.elb.amazonaws.com   80:32317/TCP   14s
+
+now can be accessed from LB name
