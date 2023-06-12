@@ -1,3 +1,6 @@
+https://docs.aws.amazon.com/eks/latest/userguide/eksctl.html
+https://github.com/weaveworks/eksctl/blob/main/README.md#installation
+
 eksctl create cluster -f eks-cluster.yaml
 eksctl delete cluster -f eks-cluster.yaml
 
