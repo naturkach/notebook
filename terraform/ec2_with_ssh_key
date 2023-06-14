@@ -1,0 +1,65 @@
+///////////
+this ex. to create key with TF
+also existing key can be added
+//////////
+
+resource "aws_instance" "app_server" {
+  ami           = "ami-042bae94a952c9eba"
+  instance_type = "t3.micro"
+  key_name      = "TF_key"
+
+  vpc_security_group_ids = [
+    aws_security_group.project-iac-sg.id
+  ]
+  tags = {
+    Name = var.instance_name
+  }
+}
+
+resource "aws_key_pair" "TF_key" {
+  key_name = "TF_key"
+  public_key = tls_private_key.rsa.public_key_openssh
+}
+
+resource "tls_private_key" "rsa" {
+  algorithm = "RSA"
+  rsa_bits = 4096
+}
+
+resource "local_file" "TF_key" {
+  content  = tls_private_key.rsa.private_key_pem
+  filename = "tfkey"
+}
+
+resource "aws_security_group" "project-iac-sg" {
+  name = "ansible-node-SG"
+  description = "ansible node sg"
+  vpc_id = "vpc-089cf95d1651d1995"
+
+  // To Allow SSH Transport
+  ingress {
+    from_port = 22
+    protocol = "tcp"
+    to_port = 22
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  // To Allow Port 80 Transport
+  ingress {
+    from_port = 80
+    protocol = "tcp"
+    to_port = 80
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  
+    egress {
+    from_port       = 0
+    to_port         = 0
+    protocol        = "-1"
+    cidr_blocks     = ["0.0.0.0/0"]
+  }
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
