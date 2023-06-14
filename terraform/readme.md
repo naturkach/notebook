@@ -1,7 +1,8 @@
 
 <a href = 'https://registry.terraform.io/providers/hashicorp/aws/latest/docs'> AWS provider docs </a>
 <table>
-  <tr> <td>  </td>  <td> </td> </tr>
+<tr> <td>  </td>  <td>terraform fmt </td> </tr>
+<tr> <td>  </td>  <td>terraform validate </td> </tr>
 <tr> <td> override var </td>  <td>terraform apply -var "instance_name=NewName" </td> </tr>
 <tr> <td>show resource states</td>  <td>terraform state list </td> </tr>
 <tr> <td>detail state of resource </td>  <td>terraform state show <name from list> </td> </tr>
