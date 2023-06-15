@@ -1,0 +1,12 @@
+you can import existing resources to terraform:
+
+import SG:
+main.tf 
+import {
+  id = "<resource-id>"
+  to = aws_securiti_group.web
+}
+
+terraform init
+terraform plan -generate-config-out=generated-sg.tf
+terraform apply
