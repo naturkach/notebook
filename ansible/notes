@@ -91,3 +91,24 @@ block - some instructions ccan be grouped in single when
   when: ansible_os_family == "RedHat"
 -----------------------------------------
 
+loop:   (loop or with_items - depends on version) 
+
+  tasks:   
+  - name: hello list
+    debug: 
+      msg: "hello {{ item }}"
+    with_items:
+      - "user1"
+      - "user2"
+      - "user3"
+      
+loop untill
+
+- name: loop untill
+  shell: echo -n A >> myfile.txt && cat myfile.txt
+  register: output
+  delay: 2                   // delay in seconds
+  retries: 10                 // default 3
+  untill: output.stdout.find("AAAA") == false
+----------------------------------
+      
