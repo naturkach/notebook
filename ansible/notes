@@ -72,3 +72,11 @@ save output to var
     - debug:
         msg: "uptime is {{ results.stdout }}"
 --------------------------------------
+
+when condition
+
+    - name: webuptime
+      debug:
+        msg: "hi {{ owner }} web uptime is {{ results.stdout }} and server is {{ ansible_os_family }}"
+      when: owner == "Naik"
+----------------------------------------
