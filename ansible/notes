@@ -47,6 +47,7 @@ handlers - do only if some task has some changes
 debug - to output message:
 
   vars:                // sure you can take vars from group_vars
+                       // vars can be taken from -m setup output (ec2 config ansible tag_function_web_server -i aws_ec2.yaml -m setup)
     message1: hello
     message2: world
     
@@ -58,4 +59,13 @@ debug - to output message:
   - name: print message
     debug:
       msg: "we say: {{ message1 }} {{  message2}}"
+      
+-------------------------------------
+save output to var 
+
+   - shell: uptime
+      register: results
+
+    - debug:
+        msg: "uptime is {{ results.stdout }}"
 --------------------------------------
