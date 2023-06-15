@@ -46,9 +46,7 @@ handlers - do only if some task has some changes
 
 debug - to output message:
 
-  vars:
-    source_file: ./Mywebsite/index.html
-    destin_file: /var/www/html
+  vars:                // sure you can take vars from group_vars
     message1: hello
     message2: world
     
