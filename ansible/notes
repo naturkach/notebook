@@ -80,3 +80,14 @@ when condition
         msg: "hi {{ owner }} web uptime is {{ results.stdout }} and server is {{ ansible_os_family }}"
       when: owner == "Naik"
 ----------------------------------------
+
+block - some instructions ccan be grouped in single when 
+
+- block:   #=======first block=========
+    - name: install apache
+      yum: name=httpd state=latest
+    - name start web server
+      service: name=httpd state=started enabled=yes    
+  when: ansible_os_family == "RedHat"
+-----------------------------------------
+
