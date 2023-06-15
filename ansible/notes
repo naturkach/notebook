@@ -5,3 +5,22 @@ $ cat ansible.cfg
 [defaults]
 host_key_checking = false
 inventory         = ./hosts
+
+
+----------------------------------
+variables
+- move vars to group_vars/<group_name>
+
+├── group_vars
+│   ├── all
+│   └── aws_ec2
+
+$ cat group_vars/all 
+---
+ansible_user: ec2-user
+
+$ cat group_vars/aws_ec2 
+---
+ansible_ssh_private_key_file : /home/ec2-user/.ssh/tfkey
+
+-------------------------------------
