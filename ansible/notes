@@ -60,6 +60,9 @@ debug - to output message:
     debug:
       msg: "we say: {{ message1 }} {{  message2}}"
       
+      - debug:
+        var: ansible_default_ipv4.address           // taken from "-m setup"
+      
 -------------------------------------
 save output to var 
 
