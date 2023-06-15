@@ -24,3 +24,22 @@ $ cat group_vars/aws_ec2
 ansible_ssh_private_key_file : /home/ec2-user/.ssh/tfkey
 
 -------------------------------------
+
+handlers - do only if some task has some changes
+
+  tasks:
+  - name: install apache web server
+    yum: name=httpd state=latest
+
+  - name: copy home page
+    copy: src={{ source_file }} dest={{ destin_file }} mode=0555
+    notify: restart apache
+
+  - name: start webserver
+    service: name=httpd state=started enabled=yes
+
+  handlers:
+  - name: restart apache
+    service: name=httpd state=restarted
+    
+-------------------------
