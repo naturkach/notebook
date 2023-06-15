@@ -5,8 +5,12 @@ idempotent - if run once - will not do the same again
   <tr><td>dynamic inventory list</td> <td> ansible-inventory -i aws_ec2.yaml --list</td> </tr>
 <tr><td>ping node by tag in dymanic env</td> <td>ansible -i aws_ec2.yaml tag_function_web_server -m ping</td> </tr>
 <tr><td>host setup by tag</td> <td>ansible tag_function_web_server -i aws_ec2.yaml -m setup</td> </tr>
+<tr><td>handlers - do only if some task has some changes</td> <td>notify: restart apache <br> handler<br>- name: restart apache<br>service: name=httpd state=restarted </td> </tr>
+<tr><td></td> <td></td> </tr>
+<tr><td></td> <td></td> </tr>
 <tr><td></td> <td></td> </tr>
  </table>
+
 
 
 
