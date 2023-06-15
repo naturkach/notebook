@@ -1,6 +1,15 @@
 # ansible
 idempotent - if run once - will not do the same again 
 
+<table>
+  <tr><td>dynamic inventory list</td> <td> ansible-inventory -i aws_ec2.yaml --list</td> </tr>
+<tr><td>ping node by tag in dymanic env</td> <td>ansible -i aws_ec2.yaml tag_function_web_server -m ping</td> </tr>
+<tr><td></td> <td></td> </tr>
+<tr><td></td> <td></td> </tr>
+ </table>
+
+
+
 hostfile:
 <code>
 [staging_servers]
