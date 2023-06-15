@@ -8,7 +8,7 @@
 <tr> <td>detail state of resource </td>  <td>terraform state show <name from list> </td> </tr>
 <tr> <td>re-create resource without change </td>  <td> terraform taint aws_instance.somenode (and then apply) </td> </tr>
 <tr> <td>show workspaces  </td>  <td>  terraform workspace show </td> </tr>
-<tr> <td>  </td>  <td> </td> </tr>
+<tr> <td>  </td>  <td>.terraform.lock.hcl  - providers will download versions placed in this file <br> terraform init -upgrade -- will upgrade to latest </td> </tr>
 <tr> <td>  </td>  <td> </td> </tr>
  
   
