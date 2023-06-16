@@ -1,0 +1,36 @@
+
+
+resource "aws_instance" "example" {
+  count = 3
+  ami = "ami-0c5a6dbb3f940c078"
+  instance_type = "t2.micro"
+  tags = {
+    Name = "example-${count.index}"
+  }
+  // other options
+}
+
+output "ec2_ips" {
+  value = aws_instance.example.*.public_ip
+}
+
+output "ec2_names" {
+  value = aws_instance.example.*.tags.Name
+}
+
+
+--------------------------
+Outputs:
+
+ec2_ips = [
+  "13...",
+  "13...",
+]
+ec2_names = [
+  "ansible node-0",
+  "ansible node-1",
+]
+innstance_ids = [
+  "i-0b6fa3f03ab17a6e6",
+  "i-0e34cae85491583b5",
+]
