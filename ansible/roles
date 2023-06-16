@@ -1,0 +1,38 @@
+https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_reuse_roles.html
+
+[ec2-user@ip-172-31-34-213 roles]$ ansible-galaxy init deploy_apache_website
+- Role deploy_apache_website was created successfully
+[ec2-user@ip-172-31-34-213 roles]$ ls
+deploy_apache_website
+[ec2-user@ip-172-31-34-213 roles]$ tree
+.
+└── deploy_apache_website
+    ├── README.md
+    ├── defaults
+    │   └── main.yml
+    ├── files
+    ├── handlers
+    │   └── main.yml
+    ├── meta
+    │   └── main.yml
+    ├── tasks
+    │   └── main.yml
+    ├── templates
+    ├── tests
+    │   ├── inventory
+    │   └── test.yml
+    └── vars
+        └── main.yml
+        
+-------------------       
+templates and files now will be taken from default folders:
+
+- name: generate index file
+  template: src=index.j2 dest={{ destin_folder }}/index.html mode=0555
+  notify: restart apache
+
+- name: copy home page
+  copy: src={{ item }} dest={{ destin_folder }} mode=0555
+  loop:
+    - "aws-certified-solutions-architect-associate.png"
+  notify: restart apache
