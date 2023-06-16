@@ -7,7 +7,7 @@ idempotent - if run once - will not do the same again
 <tr><td>host setup by tag</td> <td>ansible tag_function_web_server -i aws_ec2.yaml -m setup</td> </tr>
 <tr><td>handlers - do only if some task has some changes</td> <td>notify: restart apache <br> handler<br>- name: restart apache<br>service: name=httpd state=restarted </td> </tr>
 <tr><td>extra vars </td> <td>--extra-var "MYHOSTS=tag_function_web_server  (if var defined without value) <br> MYHOSTS=newhost - re-define if exist</td> </tr>
-<tr><td></td> <td></td> </tr>
+<tr><td>devide big manifests to parts</td> <td>- name: create folders<br> include: createfolders.yaml </td> </tr>
 <tr><td></td> <td></td> </tr>
  </table>
 
