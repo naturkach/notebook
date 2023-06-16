@@ -112,3 +112,14 @@ loop untill
   untill: output.stdout.find("AAAA") == false
 ----------------------------------
       
+jinja templates:
+
+  - name: generate index file
+    template: src={{ source_folder }}/index.j2 dest={{ destin_folder }}/index.html mode=0555
+    notify: restart apache
+
+        <center>  owner - {{ owner }} <br>                          // var from group_vars
+               ansible_hostname - {{ ansible_hostname }} <br>       // var from -m setup
+               ansible_all_ipv4_addresses - {{ ansible_all_ipv4_addresses }} </center>
+-------------------------------------
+    
