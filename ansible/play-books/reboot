@@ -1,0 +1,50 @@
+# reboot host and provide uptime before and after reboot
+---
+- name: test connection to webserver
+  hosts: tag_function_web_server
+  become: yes
+#----------------
+  tasks:
+    - ping:
+
+
+    - name: uptime before reboot
+      shell: uptime
+      register: uptimebefore
+ 
+    - name: set fact of uptime
+      set_fact:
+        uptime_before: "{{ uptimebefore.stdout }}"
+
+    - name: debug remote uptime before
+      debug:
+        msg: "remote uptime is: {{ uptime_before }}"
+
+    - name: reboot servers
+      shell: sleep 3 && reboot now
+      async: 1
+      poll: 0
+
+    - name: wait till server will come up online
+      wait_for:
+        host: "{{ inventory_hostname }}"
+        state: started
+        delay: 5
+        timeout: 40
+      delegate_to: 127.0.0.1
+
+    - name: return uptime
+      shell: uptime
+      register: results
+
+    - name: set fact with remote uptime
+      set_fact:
+        remote_uptime: "{{ results.stdout }}"
+
+    - name: debug remote uptime
+      debug: 
+        msg: "remote uptime is: {{ remote_uptime }}"
+
+    - name: write to file
+      shell: echo server {{ ansible_nodename }} was rebooted its uptime before {{ uptime_before }} after reboot {{ remote_uptime }}>> /home/ec2-user/log.txt
+      delegate_to: 127.0.0.1
