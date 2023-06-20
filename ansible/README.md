@@ -8,10 +8,21 @@ idempotent - if run once - will not do the same again
 <tr><td>handlers - do only if some task has some changes</td> <td>notify: restart apache <br> handler<br>- name: restart apache<br>service: name=httpd state=restarted </td> </tr>
 <tr><td>extra vars </td> <td>--extra-var "MYHOSTS=tag_function_web_server  (if var defined without value) <br> MYHOSTS=newhost - re-define if exist</td> </tr>
 <tr><td>devide big manifests to parts</td> <td>- name: create folders<br> include: createfolders.yaml </td> </tr>
+<tr><td>save output to var</td> <td>- shell: uptime<br>register: results<br> now can use: msg: "uptime is {{ results.stdout }}"</td> </tr>
+<tr><td>run only need task:</td> <td>ansible-playbook first.yml --tags "install_stress"</td> </tr>
+<tr><td>list tags:</td> <td>ansible-playbook test.yml --list-tags</td> </tr>
+<tr><td>skip tags:</td> <td>ansible-playbook test.yml --skip-tags tag_in_playbook</td> </tr>
+<tr><td>playbook start from task</td> <td></td> </tr>
+<tr><td></td> <td>ansible-playbook test.yml --start-at-task 'second task in play'</td> </tr>
+<tr><td>ask on each step</td> <td>ansible-playbook test.yml --step </td> </tr>
+<tr><td>vault</td> <td>ansible-vault create test1.yml</td> </tr>
+<tr><td>- run vault</td> <td>ansible-playbook test.yml --ask-vault-pass</td> </tr>
+<tr><td>- encrypt:</td> <td>ansible-vault encrypt my-file.yml</td> </tr>
+<tr><td>- edit:</td> <td>ansible-vault edit my-file.yml</td> </tr>
+<tr><td>print all vars</td> <td>ansible all --setup</td> </tr>
+<tr><td></td> <td></td> </tr>
 <tr><td></td> <td></td> </tr>
  </table>
-
-
 
 
 hostfile:
@@ -27,20 +38,6 @@ inventory         = ./hosts.txt
   </code>
   
   
-tags:
-<br> <b>run only need task:   </b>ansible-playbook first.yml --tags "install_stress"
-<br> <b>list tags:</b> ansible-playbook test.yml --list-tags
-<br> <b>skip tags:</b> ansible-playbook test.yml --skip-tags tag_in_playbook
-  
-  <br><b></b>
-<br><b>playbook start from task</b> ansible-playbook test.yml --start-at-task 'second task in play'
-<br><b>ask on each step</b> ansible-playbook test.yml --step 
-<br><b>vault</b> ansible-vault create test1.yml
-<br>- run: ansible-playbook test.yml --ask-vault-pass
-<br>- encrypt: ansible-vault encrypt my-file.yml
-<br>- edit: ansible-vault edit my-file.yml
-  
-<br><b>print all vars</b> ansible all --setup
   
 show additional info of tasks execution:
   - add -v option: ansible-playbook first.yml --tags "please_ping" -v
