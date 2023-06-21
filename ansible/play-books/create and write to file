@@ -1,0 +1,35 @@
+---
+// sure you can just use copy module
+
+- name: create files
+  hosts: tag_function_web_server
+  become: yes
+#----------------
+  tasks:
+
+  - name: Creating an empty file
+    file:
+      path: "/home/ec2-user/testfile.txt"
+      state: touch
+
+  - name: Insert/Update "Match User" configuration block in /etc/ssh/sshd_config
+    ansible.builtin.blockinfile:
+      path: "/home/ec2-user/testfile.txt"
+      block: |
+        hi this is 
+        some file
+        with 3 rows
+
+  - name: list files
+    shell: ls -la
+    register: results
+
+  - debug:
+      var: results
+
+  - name: read file
+    shell: cat testfile.txt
+    register: readresult
+
+  - debug:
+      var: readresult
