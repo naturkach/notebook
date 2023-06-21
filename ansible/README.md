@@ -19,7 +19,7 @@ idempotent - if run once - will not do the same again
 <tr><td>- run vault</td> <td>ansible-playbook test.yml --ask-vault-pass</td> </tr>
 <tr><td>- encrypt:</td> <td>ansible-vault encrypt my-file.yml</td> </tr>
 <tr><td>- edit:</td> <td>ansible-vault edit my-file.yml</td> </tr>
-<tr><td>print all vars</td> <td>ansible all --setup</td> </tr>
+<tr><td>show all hosts grouped by tags</td> <td>ansible-inventory -i aws_ec2.yaml --list</td> </tr>
 <tr><td></td> <td></td> </tr>
 <tr><td></td> <td></td> </tr>
  </table>
