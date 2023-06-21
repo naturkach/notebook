@@ -1,0 +1,22 @@
+---
+- name: eror control
+  hosts: tag_role_ansible_node
+  any_errors_fatal: true                          // stop tasks on all nodes if failed in one of them 
+  become: yes
+
+  tasks:
+  - name: task num1
+    yum: name=treee state=latest
+    ignore_errors: yes                           // proceed with other tasks if this step failed
+
+  - name: task num2
+    shell: echo hello world
+    register: results
+    failed_when: results.rc == 0                // if return code is '0' mark this task as failed 
+  # failed_when: "'world' in results.stdout"    // mark step failed if in stdout we have 'world'  (the same can be done for stderr)
+
+  - debug:
+      var: results
+
+  - name: task num3
+    ping:
