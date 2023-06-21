@@ -1,0 +1,18 @@
+
+Lifecycles -------------------------------
+
+disable resource changes in ami/user_data:
+  lifecycle {
+    ignore_changes = [ "ami", "user_data" ]
+  }
+
+disable ec2 exidental delete with tf:
+  lifecycle {
+    prevent_destroy = true
+  }
+
+  lifecycle {                                    create new version before destroying previouse
+    create_before_destroy = true
+  }
+
+------------------------------------------
