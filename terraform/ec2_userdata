@@ -1,0 +1,50 @@
+
+
+add user data to ec2:
+
+  user_data = <<EOF
+#!/bin/bash
+yum -y update
+yum -y install httpd
+myip=`curl http://169.254.169.254/latest/meta-data/local-ipv4`
+echo "<h2> webserver ip: $myip</h2><br> build by terraform" > /var/www/html/index.html
+sudo service httpd start
+chkconfig httpd on
+EOF
+
+
+-----------
+or external file:   user_data = file("user_data.sh")
+----------------------------------
+
+or generic template: 
+
+  user_data = templatefile("user_data.tpl", {
+    f_name = "Anton",
+    l_name = "Nat",
+    names  = ["banana", "apple", "mellon"]
+  })
+
+cat user_data.tpl
+#!/bin/bash
+yum -y update
+yum -y install httpd
+sed -i 's/Listen 80/Listen 0.0.0.0:80/g' /etc/httpd/conf/httpd.conf
+
+myip=`curl http://169.254.169.254/latest/meta-data/local-ipv4`
+
+cat <<EOF > /var/www/html/index.html
+<html>
+<h2>build by terrafrom</h2>
+owner ${f_name} ${l_name} <br>
+<h2> webserver ip: $myip</h2><br> build by terraform generic"
+
+%{ for x in names ~}<br><br>
+Hello to ${x} from ${f_name}<br>
+%{ endfor ~}
+</html>
+EOF
+
+sudo service httpd start
+chkconfig httpd on
+------------------------------------------
