@@ -2,7 +2,7 @@
 idempotent - if run once - will not do the same again 
 
 <table>
-  <tr><td>dynamic inventory list</td> <td> ansible-inventory -i aws_ec2.yaml --list</td> </tr>
+  <tr><td>dynamic inventory list<br>show all hosts grouped by tags</td> <td> ansible-inventory -i aws_ec2.yaml --list</td> </tr>
 <tr><td>ping node by tag in dymanic env</td> <td>ansible -i aws_ec2.yaml tag_function_web_server -m ping</td> </tr>
 <tr><td>host setup by tag</td> <td>ansible tag_function_web_server -i aws_ec2.yaml -m setup</td> </tr>
 <tr><td>handlers - do only if some task has some changes</td> <td>notify: restart apache <br> handler<br>- name: restart apache<br>service: name=httpd state=restarted </td> </tr>
@@ -12,14 +12,14 @@ idempotent - if run once - will not do the same again
 <tr><td>run only need task:</td> <td>ansible-playbook first.yml --tags "install_stress"</td> </tr>
 <tr><td>list tags:</td> <td>ansible-playbook test.yml --list-tags</td> </tr>
 <tr><td>skip tags:</td> <td>ansible-playbook test.yml --skip-tags tag_in_playbook</td> </tr>
-<tr><td>playbook start from task</td> <td></td> </tr>
-<tr><td></td> <td>ansible-playbook test.yml --start-at-task 'second task in play'</td> </tr>
+<tr><td>playbook start from task</td> <td>ansible-playbook test.yml --start-at-task 'second task in play'</td> </tr>
+<tr><td></td> <td></td> </tr>
 <tr><td>ask on each step</td> <td>ansible-playbook test.yml --step </td> </tr>
 <tr><td>vault</td> <td>ansible-vault create test1.yml</td> </tr>
 <tr><td>- run vault</td> <td>ansible-playbook test.yml --ask-vault-pass</td> </tr>
 <tr><td>- encrypt:</td> <td>ansible-vault encrypt my-file.yml</td> </tr>
 <tr><td>- edit:</td> <td>ansible-vault edit my-file.yml</td> </tr>
-<tr><td>show all hosts grouped by tags</td> <td>ansible-inventory -i aws_ec2.yaml --list</td> </tr>
+<tr><td></td> <td></td> </tr>
 <tr><td></td> <td></td> </tr>
 <tr><td></td> <td></td> </tr>
  </table>
