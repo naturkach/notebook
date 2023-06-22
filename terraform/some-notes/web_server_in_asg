@@ -1,0 +1,125 @@
+//SG
+//LaunchConfig
+//ASG
+//ELB
+
+provider "aws" {
+  region = "eu-north-1"
+}
+
+data "aws_availability_zones" "available" {
+  state = "available"
+}
+
+data "aws_ami" "latest_aws_ami" {
+  owners      = ["amazon"]
+  most_recent = true
+
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-kernel-5.10-hvm-*-x86_64-gp2"]
+  }
+}
+//--------------------------------------
+//resources:
+//SG
+resource "aws_security_group" "new_webserver-sg" {
+  name        = "dynamic new_webserver SG"
+  description = "web server sg"
+  vpc_id      = "vpc-089cf95d1651d1995"
+
+  // To Allow tcp port Transport
+  dynamic "ingress" {
+    for_each = ["80", "443"]
+    content {
+      from_port   = ingress.value
+      to_port     = ingress.value
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "dynamic sg"
+  }
+}
+
+// LaunchConfig
+resource "aws_launch_configuration" "web_conf" {
+//  name            = "web_launch_config"
+  name_prefix     = "web_launch_config"
+  image_id        = data.aws_ami.latest_aws_ami.id
+  instance_type   = "t3.micro"
+  security_groups = [aws_security_group.new_webserver-sg.id]
+  user_data       = file("userdata.sh")
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+// ASG
+
+resource "aws_autoscaling_group" "web_asg" {
+  name                 = "web-server-asg-${aws_launch_configuration.web_conf.name}"
+ 
+  launch_configuration = aws_launch_configuration.web_conf.name
+  max_size             = 3
+  min_size             = 2
+  min_elb_capacity     = 2
+  health_check_type    = "ELB"
+  load_balancers       = [aws_elb.web_server_elb.name]
+  vpc_zone_identifier  = [aws_default_subnet.default_az1.id, aws_default_subnet.default_az2.id]
+
+  dynamic "tag" {
+    for_each = {
+      Name  = "web-server-in-ASG"
+      owner = "Naik"
+    }
+    content {
+      key                 = tag.key
+      value               = tag.value
+      propagate_at_launch = true
+    }
+  }
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+// ELB
+
+resource "aws_elb" "web_server_elb" {
+  name               = "webserver-elb"
+  availability_zones = [data.aws_availability_zones.available.names[0], data.aws_availability_zones.available.names[1]]
+  security_groups    = [aws_security_group.new_webserver-sg.id]
+  listener {
+    lb_port           = 80
+    lb_protocol       = "http"
+    instance_port     = 80
+    instance_protocol = "http"
+  }
+  health_check {
+    healthy_threshold   = 2
+    unhealthy_threshold = 2
+    timeout             = 3
+    target              = "HTTP:80/"
+    interval            = 10
+  }
+
+  tags = {
+    Name = "webserver ELB"
+  }
+}
+
+resource "aws_default_subnet" "default_az1" {
+  availability_zone = data.aws_availability_zones.available.names[0]
+
+}
