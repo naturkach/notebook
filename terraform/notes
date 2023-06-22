@@ -16,3 +16,9 @@ disable ec2 exidental delete with tf:
   }
 
 ------------------------------------------
+
+create one resource before another: 
+
+resource "aws_instance" "amy_webserver" {
+  depends_on = [aws_instance.db_server]             -- add dependency 
+------------------------------------------
