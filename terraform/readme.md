@@ -12,6 +12,9 @@
 <tr> <td>show workspaces  </td>  <td>  terraform workspace show </td> </tr>
 <tr> <td>  </td>  <td>.terraform.lock.hcl  - providers will download versions placed in this file <br> terraform init -upgrade -- will upgrade to latest </td> </tr>
 <tr> <td>  </td>  <td> </td> </tr>
+<tr> <td>  </td>  <td> </td> </tr>
+<tr> <td>  </td>  <td> </td> </tr>
+<tr> <td>  </td>  <td> </td> </tr>
  
   
  </table>
