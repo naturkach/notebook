@@ -1,0 +1,10 @@
+data "aws_ssm_parameter" "my_rds_password" {
+  name       = "/prod/mysql"
+  depends_on = [aws_ssm_parameter.rds_password]
+}
+
+resource "null_resource" "command" {
+  provisioner "local-exec" {
+    command = "echo ${data.aws_ssm_parameter.my_rds_password.value} >> log.txt"
+  }
+}
