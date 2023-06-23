@@ -1,3 +1,6 @@
+# vars can be overriden: terraform apply -var="region=us-east-1"
+# tf will take exported vars  - ex. export TF_VAR_region=us-east-2 -- will take during apply: region=us-east-2
+
 #in variables.tf
 
 variable "region" {
