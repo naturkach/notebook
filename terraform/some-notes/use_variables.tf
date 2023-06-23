@@ -46,3 +46,4 @@ variable "common_tags" {
 }
 ## in main.tf aws_instance deffinition:
  tags = merge(var.common_tags, { Name = "${var.instance_name}-${count.index}-${var.common_tags["env"]}" })
+#-- would be like:   "Name"    = "test node-0-dev"
