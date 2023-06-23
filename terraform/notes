@@ -22,3 +22,10 @@ create one resource before another:
 resource "aws_instance" "amy_webserver" {
   depends_on = [aws_instance.db_server]             -- add dependency 
 ------------------------------------------
+
+if-else
+
+resource "aws_instance" "my_server" {
+  count  = var.env == "dev" ? 1 :0           // create 1 host if env=devm else = 0 
+
+-------------------------------------------
