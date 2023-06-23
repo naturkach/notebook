@@ -50,3 +50,22 @@ variable "common_tags" {
 ## in main.tf aws_instance deffinition:
  tags = merge(var.common_tags, { Name = "${var.instance_name}-${count.index}-${var.common_tags["env"]}" })
 #-- would be like:   "Name"    = "test node-0-dev"
+
+
+##################################################
+# or can be used terraform.tfvars file to define all vars -- it will override defaults
+# file can be named terraform.tfvars or *.tfvars
+# apply: terraform apply -var-file="dev.tfvars"
+
+region = "ca-central-1"
+instance_type = "t2.micro"
+
+allowed_ports = ["80", "443", "22"]
+
+common_tags = {
+    owner   = "nat"
+    project = "learning"
+    env     = "dev"
+  }
+################################################
+
