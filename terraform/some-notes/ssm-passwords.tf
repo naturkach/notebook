@@ -34,7 +34,7 @@ data "aws_ssm_parameter" "my_rds_password" {        // save to  var my_rds_passw
 }
 
 resource "null_resource" "command" {                // execute local command
-  triggers = {
+  triggers = {                                      // triger this command on each terraform apply
     timestamp = "${timestamp()}"
   }
   provisioner "local-exec" {
