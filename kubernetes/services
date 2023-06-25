@@ -6,6 +6,11 @@ kubectl expose deployment first-eks-deployment --type=ClusterIP --port 80       
 kubectl expose deployment first-eks-deployment --type=NodePort --port 80        create service with type NodePort
 kubectl expose deployment first-eks-deployment --type=LoadBalancer --port 80   create service with type LoadBalancer
 
+kubectl expose command creates a new Kubernetes service that exposes the specified deployment or pod to the public internet. This is useful when you want to make a service accessible to external clients
+
+if need to just access from local host: 
+ kubectl port-forward svc/prometheus-server 30080:80 &    // & - will run the command in the background
+
 create service maually: 
  kubectl expose deployment first-eks-deployment --type=ClusterIP --port 80
 
