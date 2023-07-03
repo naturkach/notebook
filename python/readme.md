@@ -8,6 +8,7 @@ print (no_spes_chars_string + "\n" + reverse_string)
 
 <hr>
 list add
+
 ```
 thislist = ["apple", "banana", "cherry"]
 thislist.append("orange")
