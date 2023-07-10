@@ -1,0 +1,46 @@
+# first git actions pipe
+# readme badge: <img src="https://github.com/naturkach/test2/workflows/CI-CD/badge.svg?branch=main"><br>
+
+name: CI-CD
+env:
+  APPLICATION_NAME:  "my flask"                                         // global vars
+  PACKAGE_NAME    :  "flask_deploy_ver_${{ github.sha }}" 
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  testing:  
+    runs-on: ubuntu-latest      
+    steps:      
+      - name: run hello test
+        run : echo "hello worls from testing"
+        
+      - name: run commands
+        run : |
+          echo "hello messsage1"
+          echo "app name: ${{ env.APPLICATION_NAME }}"
+          
+      - name: clone repo
+        uses: actions/checkout@v1
+        
+      - name: ls
+        run : ls -la
+
+  deployment:  
+    runs-on: ubuntu-latest
+    needs: [testing]
+    env:
+      VAR1: "hello"
+      VAR2: "some var 2"
+    steps:      
+      - name: run ${{ env.VAR1 }} deploy
+        run : echo "hello world from deployment"
+        
+      - name: deploypackage
+        run : echo "deploy package name is ${{ env.PACKAGE_NAME }}"
+   
+      - name: internaltest
+        run : aws --version
