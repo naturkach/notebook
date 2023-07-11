@@ -45,6 +45,29 @@
 </details>
 
 <details>
+<summary>What is the difference between git reset and git revert?</summary>
+<br> git revert creates a new commit which undoes the changes from last commit.
+  <br> git revert HEAD  -- create new commit that revert previous in remote repo
+  <br> git revert --no-commit HEAD -- revert without creating commit
+    
+<br> git reset depends on the usage, can modify the index or change the commit which the branch head is currently pointing at.
+ <br> git reset --hard 8b5911c --- reset to commit
+ <br> git reset HEAD~1 -- discard local commits
+ 
+<br> git push -f origin HEAD~2:master
+</details>
+
+<details>
+<summary>In what situations are you using git rebase?</summary>
+<br>Suppose a team is working on a `feature` branch that is coming from the `main` branch of the repo. At a point, where the feature development is done, and finally we wish to merge the feature branch into the main branch without keeping the history of the commits made in the feature branch, a `git rebase` will be helpful.
+</details>
+
+<details>
+<summary>How do you revert a specific file to previous commit?</summary>
+<br> git checkout HEAD~1 -- /path/of/the/file
+</details>
+
+<details>
 <summary>simple</summary>
-<br> count = 1
+<br> count = 5
 </details>
