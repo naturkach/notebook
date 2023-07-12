@@ -1,5 +1,12 @@
 ansible-inventory -i aws_ec2.yaml --list
-- list all hosts, groped by tags
+- list all hosts, grouped by tags   -- tags can be added to folder: group_vars/  ex:
+
+=============================
+group_vars]$ cat all
+---
+ansible_user: ec2-user
+owner       : unknown
+============================
 
 ansible -i aws_ec2.yaml tag_Name_ansible_node -m ping
 - to ping olny hosts with tag: tag_Name_ansible_node
@@ -27,17 +34,17 @@ keyed_groups:
   - key: tags
     prefix: tag
 compose:
-  ansible_host: private_ip_address
+  ansible_host: private_ip_address          --- to access over private addresses
+  ansible_host: public_ip_address           -- use if need public access
 =================================================================
 
-vars:
-<code>
-mkdir group_vars 
-[ec2-user@ip-172-31-34-213 inventory]$ cd group_vars/
-[ec2-user@ip-172-31-34-213 group_vars]$ ll
-total 8
--rw-r--r--. 1 ec2-user ec2-user 27 Jun  4 08:43 all
--rw-r--r--. 1 ec2-user ec2-user 61 Jun  4 08:55 aws_ec2
+# vars need to group hosts and add some vars, like ssh key
+
+group_vars/
+├── all
+├── aws_ec2
+└── tag_function_web_server
+
 [ec2-user@ip-172-31-34-213 group_vars]$ cat all
 ---
 ansible_user: ec2-user
@@ -45,10 +52,10 @@ ansible_user: ec2-user
 cat aws_ec2
 ---
 ansible_ssh_private_key_file : /home/ec2-user/.ssh/tfkey
-</code>
-------------------------------------------------------
+
+=================================================================
 with playbook:
-ansible-playbook -i aws_ec2.yaml myplay.yaml
+ansible-playbook myplay.yaml
 
 ]$ cat myplay.yaml
 ---
@@ -57,5 +64,5 @@ ansible-playbook -i aws_ec2.yaml myplay.yaml
   become: yes
   tasks:
     - ping:
- ----------------------------
+=================================================================
 
