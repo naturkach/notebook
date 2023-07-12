@@ -6,6 +6,9 @@ ansible -i aws_ec2.yaml tag_Name_ansible_node -m ping
 
 
 ===============================================================
+! need boto3 and botocore, and python3:
+https://docs.ansible.com/ansible/latest/collections/amazon/aws/aws_ec2_inventory.html
+
 cat ansible.cfg
 [defaults]
 host_key_checking = false
