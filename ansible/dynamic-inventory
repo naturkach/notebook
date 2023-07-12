@@ -3,16 +3,18 @@ ansible-inventory -i aws_ec2.yaml --list
 
 ansible -i aws_ec2.yaml tag_Name_ansible_node -m ping
 - to ping olny hosts with tag: tag_Name_ansible_node
-<code>
+
+
+===============================================================
 cat ansible.cfg
 [defaults]
 host_key_checking = false
+inventory         = ./aws_ec2.yaml                     -- now no need to add -i aws_ec2.yaml in command run
 
 [inventory]
 enable_plugins = aws_ec2
-</code>
 
-<code>
+---------------------
 cat aws_ec2.yaml
 ---
 plugin: aws_ec2
@@ -23,7 +25,7 @@ keyed_groups:
     prefix: tag
 compose:
   ansible_host: private_ip_address
-</code>
+=================================================================
 
 vars:
 <code>
