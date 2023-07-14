@@ -1,5 +1,7 @@
 it's all from: https://github.com/KasteM34/github-oidc-terraform
 
+![alt text](terrafrom_vs_githubactions.png)
+
 1. AWS IAM: add Identity privider (OpenID Connect)
    <a href='https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services'>
    Configuring OpenID Connect in AWS</a>
