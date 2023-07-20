@@ -83,3 +83,15 @@ tasks:
 </code>
   
 -----------
+when condition:
+
+```
+  tasks:
+    - name: Install Postfix
+      ansible.builtin.package:
+        name: postfix
+        state: latest
+      when: inventory_hostname in groups["web"]
+```
+
+
