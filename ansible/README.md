@@ -20,8 +20,8 @@ idempotent - if run once - will not do the same again
 <tr><td>- run vault</td> <td>ansible-playbook test.yml --ask-vault-pass</td> </tr>
 <tr><td>- encrypt:</td> <td>ansible-vault encrypt my-file.yml</td> </tr>
 <tr><td>- edit:</td> <td>ansible-vault edit my-file.yml</td> </tr>
-<tr><td></td> <td></td> </tr>
-<tr><td></td> <td></td> </tr>
+<tr><td>ansible node1 -m ansible.builtin.shell -a "rpm -qi httpd"</td> <td>verify if httpd is installed</td> </tr>
+<tr><td>ansible web -m ansible.builtin.service_facts | grep httpd.service -A4</td> <td> check all web hosts if httpd is installed</td> </tr>
 <tr><td></td> <td></td> </tr>
  </table>
 
