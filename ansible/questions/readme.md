@@ -11,7 +11,7 @@ Module – The code or binaries that Ansible copies to and executes on each mana
 <br><br>
 Playbook – One or more plays. Each play can be executed on the same or different hosts
 <br><br>
-Role – Ansible roles allows you to group resources based on certain functionality/service such that they can be easily reused. In a role, you have directories for variables, defaults, files, templates, handlers, tasks, and metadata. You can then use the role by simply specifying it in your playbook.
+Role – Roles are a way to organize your playbooks into reusable units of work. They allow you to separate your code into logical components, making it easier to maintain and reuse. Each role should have a specific purpose, such as installing a package or configuring a service.
 </details>
 
 
