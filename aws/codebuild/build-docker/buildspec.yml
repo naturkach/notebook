@@ -1,0 +1,47 @@
+#--------------------------------------------------------------
+# Simple AWS CodeBuild Config File
+#
+# Copyleft (c) by Denis Astahov https://github.com/adv4000/codebuild-demo
+#--------------------------------------------------------------
+version: 0.2
+
+env:
+  variables:
+ #   AWS_DEFAULT_REGION: "eu-north-1"  -- can be added to Environment variables of the codebuild
+    ECR_REPO_NAME      : "webapp"
+    ECR_IMAGE_TAG      : "latest"
+    S3_BUCKET: aws-devops-cicddemo-0711
+  parameter-store:
+    AWS_ACCOUNT_ID: "MY_ACCOUNT_ID"
+
+phases:
+  install:
+    commands:
+      - echo "Check aws and git version"
+      - aws --version
+      - git --version
+      - docker --version
+      - echo "AWS_ACCOUNT_ID $AWS_ACCOUNT_ID or ${AWS_ACCOUNT_ID}" > log.txt
+      - echo "AWS_DEFAULT_REGION $AWS_DEFAULT_REGION or $SOME_REGION_VAR" >> log.txt
+
+  pre_build:
+    commands:
+      - echo "Login to AWS ECR and get commit id"
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com  
+      - COMMIT_ID=$(git rev-parse --short HEAD)
+
+  build:
+    commands:
+      - echo Building the Docker image...
+      - echo "${ECR_REPO_NAME}:${ECR_IMAGE_TAG}" >> log.txt
+      - aws s3 cp log.txt s3://aws-devops-cicddemo-0711/log.txt 
+      - docker build -t webapp:latest .
+      - docker images -a
+      - docker tag $ECR_REPO_NAME:$ECR_IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$ECR_REPO_NAME:$ECR_IMAGE_TAG
+      - docker tag $ECR_REPO_NAME:$ECR_IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$ECR_REPO_NAME:$COMMIT_ID
+
+  post_build:
+    commands:
+      - echo Pushing the Docker image...
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$ECR_REPO_NAME:$ECR_IMAGE_TAG
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$ECR_REPO_NAME:$COMMIT_ID
