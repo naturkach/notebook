@@ -17,7 +17,7 @@
   <br>      Replace provider in the state
   <br>                    Remove instances from the state
   <br>                  Show a resource in the state </td> </tr>
-<tr> <td>  </td>  <td> </td> </tr>
+<tr> <td>  name  = (var.name != "" ? var.name : random_id.id.hex) </td>  <td> If the name variable is NOT empty then(?) Assign the var.name value to the local value else(:) 	Assign random_id.id.hex value to the local value</td> </tr>
 <tr> <td>  </td>  <td> </td> </tr>
 <tr> <td>  </td>  <td> </td> </tr>
  
