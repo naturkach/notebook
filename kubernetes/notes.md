@@ -136,5 +136,16 @@ metadata:
 </details>
  
 <details>
+<summary> Services </summary>
+  when you create Service, your app is going to be accessed:
+
+  - ClusterIP - (only internal cluster IP (bydefault))
+  - NodePort - some port on all worker nodes
+  - ExternalName - DNS CNAME record
+  - LoadBalancer - only in cloud
+</details>
+
+
+<details>
 <summary> </summary>
 </details>
