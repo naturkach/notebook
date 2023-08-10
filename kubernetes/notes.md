@@ -147,5 +147,57 @@ metadata:
 
 
 <details>
+<summary> Ingress </summary>
+  
+  - "networking.k8s.io/v1beta1" API version was introduced in Kubernetes version 1.14 and was deprecated in version 1.22.
+  - for older "networking.k8s.io/v1"
+
+config on v1 should be like:
+```
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-hosts
+spec:
+  rules:
+    - host: www.adv-it.net
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: main
+                port:
+                  number: 80
+```
+```
+kubectl get ingress
+NAME            CLASS    HOSTS                                           ADDRESS                                                                   PORTS   AGE
+ingress-hosts   <none>   www.adv-it.net,web1.adv-it.net,cat.adv-it.net   a35d1a0ecb8d242efa974f838ab42491-918215148.eu-north-1.elb.amazonaws.com   80      15m
+```
+```
+ubectl describe ingress
+Name:             ingress-hosts
+Labels:           <none>
+Namespace:        default
+Address:          a35d1a0ecb8d242efa974f838ab42491-918215148.eu-north-1.elb.amazonaws.com
+Ingress Class:    <none>
+Default backend:  <default>
+Rules:
+  Host             Path  Backends
+  ----             ----  --------
+  www.adv-it.net   
+                   /   main:80 (192.168.111.231:80,192.168.188.15:80)
+  web1.adv-it.net  
+                   /   web1:80 (192.168.127.102:80,192.168.174.152:80)
+  cat.adv-it.net   
+                   /   tomcat:8080 (192.168.127.4:8080,192.168.167.146:8080)
+Annotations:       <none>
+Events:            <none>
+```
+</details>
+
+<details>
 <summary> </summary>
 </details>
