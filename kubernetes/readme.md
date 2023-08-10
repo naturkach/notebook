@@ -1,3 +1,4 @@
+You pay $0.10 per hour for each Amazon EKS cluster that you create.
 
 <table>
   <tr>    <td></td> <td></td>  </tr>
