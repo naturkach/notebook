@@ -5,6 +5,10 @@ create pod hello manually               kubectl run hello --image=naturkach/k8sp
 delete pod manually                     kubectl delete pods hello
 enter to the pod                        kubectl exec -it <podname> -- sh
 port-forward to pod manually            kubectl port-forward hello 8080:80
+show labels                             kubectl get po --show-labels
+show all pods with label env            kubectl get pods -L env
+add label anv=dev                       kubectl pods <podname> env=dev
+nodes also can be labeled               kubectl describe node minikube -- check all labels for minikube node
 
 kubectl describe pod my-web
 ----------------------------------------
