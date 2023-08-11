@@ -2,7 +2,7 @@ You pay $0.10 per hour for each Amazon EKS cluster that you create.
 
 <table>
   <tr>    <td></td> <td></td>  </tr>
-<tr>    <td>minikube</td> <td> minikube start/stop/delete <br> start --cpus=3 --memory=8gb --disk-size=10gb</td>  </tr>
+<tr>    <td>minikube</td> <td> minikube start/stop/delete <br> minikube start --cpus=3 --memory=8gb --disk-size=10gb</td>  </tr>
 <tr>    <td><a href='https://kind.sigs.k8s.io/docs/user/quick-start/#installation'>kind k8s cluster</a></td> <td></td>  </tr>
 <tr>    <td><a href='https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/'>kubectl</a></td> <td></td>  </tr>
 <tr>    <td><a href='https://kubernetes.io/docs/home/'> k8s documentation</a></td> <td></td>  </tr>
