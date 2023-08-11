@@ -167,9 +167,16 @@ metadata:
   when you create Service, your app is going to be accessed:
 
   - ClusterIP - (only internal cluster IP (bydefault))
+    <br>kubectl expose deployment first-eks-deployment --type=ClusterIP --port 80       create service with type ClusterIP
   - NodePort - some port on all worker nodes
+    <br> kubectl expose deployment first-eks-deployment --type=NodePort --port 80        create service with type NodePort
   - ExternalName - DNS CNAME record
   - LoadBalancer - only in cloud
+    <br> kubectl expose deployment first-eks-deployment --type=LoadBalancer --port 80   create service with type LoadBalancer
+
+
+
+
 </details>
 
 
