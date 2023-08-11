@@ -92,6 +92,14 @@ spec:
       maxUnavailable: 1    -- 1 pod wiil be drained
     type: RollingUpdate
 ```
+  - recreate
+```
+spec:
+  replicas: 5
+  minReadySeconds: 10
+  strategy:
+    type: Recreate         -- all pods will be drained, and only after new pods will be created
+```
 </details>
 
 update image:
