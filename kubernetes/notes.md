@@ -77,6 +77,23 @@ mynew-deployment   Deployment/mynew-deployment   <unknown>/80%   3         6    
 it will works if it can check targets
 ```
 
+<details>
+<summary> deployment strategies </summary>
+  
+  - rolling update
+```
+kind: Deployment
+spec:
+  replicas: 5
+  minReadySeconds: 10      -- pod will be ready after 10 sec
+  strategy:
+    rollingUpdate:
+      maxSurge: 1          -- 1 pod will be creted on update
+      maxUnavailable: 1    -- 1 pod wiil be drained
+    type: RollingUpdate
+```
+</details>
+
 update image:
 
  - kubectl describe deployment mynew-deployment  - get container name (k8sphp in my example / check what image is deployed)
@@ -133,6 +150,8 @@ metadata:
         name: memory
         targetAverageUtilization: 80
 ```
+
+
 </details>
  
 <details>
@@ -196,6 +215,28 @@ Rules:
 Annotations:       <none>
 Events:            <none>
 ```
+</details>
+ 
+
+<details>
+<summary> Dashboard </summary>
+  https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/
+</details>
+
+<details>
+<summary> Minikube </summary>
+
+access apps - https://minikube.sigs.k8s.io/docs/handbook/accessing/
+
+after port expose like: kubectl expose deployment hello-minikube1 --type=NodePort --port=8080
+<br> create service tunell:
+```
+minikube service hello-minikube1 --url
+```
+</details>
+
+<details>
+<summary> </summary>
 </details>
 
 <details>
