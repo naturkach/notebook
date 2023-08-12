@@ -164,6 +164,9 @@ metadata:
  
 <details>
 <summary> Services </summary>
+
+  Service - is Kubernetes object created to have one point of access to the group of pods
+  
   when you create Service, your app is going to be accessed:
 
   - ClusterIP - (only internal cluster IP (bydefault))
