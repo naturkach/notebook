@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: endpoints-service
+spec:
+  ports:
+  - port: 80
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: endpoints-service
+subsets:
+  - addresses:
+    - ip: 10.75.21.169  -- node ip from 1 service (kubectl get endpoints)
+    - ip: 10.75.22.141  -- node ip from 2 service
+    ports:
+    - port: 8000
