@@ -11,3 +11,49 @@ spec:
       port: 80
       targetPort: 8000
   type: ClusterIP
+
+
+## now can access to service from node (kluster) :
+root@kuber-78ccffcc8c-6gphv:/# curl http://kuber-service.default.svc.cluster.local
+kuber-service - service name
+default       - namespace
+
+or curl http://kuber-service  (if request comes from the same namespace)
+
+or just serviceip:
+root@kuber-78ccffcc8c-6gphv:/# curl http://10.111.171.212
+
+$ kubectl get svc
+NAME                       TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+kuber-service              ClusterIP   10.111.171.212   <none>        80/TCP           98m
+
+#service will select pods from endpoint list
+$ kubectl get endpoints
+NAME                       ENDPOINTS                                            AGE
+kuber-app-manual-service   10.244.0.53:8000,10.244.0.53:8000                    91m
+kuber-service              10.244.0.50:8000,10.244.0.51:8000,10.244.0.52:8000   119m
+
+you can create service with endpoint from other services:
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: endpoints-service
+spec:
+  ports:
+  - port: 80
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: endpoints-service
+subsets:
+  - addresses:
+    - ip: 10.244.0.53
+    - ip: 10.244.0.50
+    ports:
+    - port: 8000
+
+and now if you try to access from curl http://endpoints-service  -- you will randomly access to kuber-service or kuber-app-manual-service
+
+
