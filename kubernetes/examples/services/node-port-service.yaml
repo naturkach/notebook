@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kuber-service-nodeport
+spec:
+  externalTrafficPolicy: Local
+  # sessionAffinity: ClientIP  -- if you need to send traffic from the same source ip to the same kube pod
+  selector:
+    app: http-server         -- selector, used by service to register pods and route traffic 
+  ports:
+    - protocol: TCP
+      port: 80               -- port to access service from pod/sever
+      targetPort: 8000       -- container port, what port is our app is listening inside container (expose in docker)
+   #   nodePort: 30080 #   - if not set will be selected from port-range: 30000-32767
+  type: NodePort
