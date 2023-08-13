@@ -1,0 +1,19 @@
+# clusterIP: None - will be created service without cluster ip,
+# but now it can be resolved over name:
+# nslookup kuber-headless-service.default.svc.cluster.local
+# and accessed over port: curl http://kuber-headless-service.default.svc.cluster.local:8000
+# it's need  if you need access to all pods at the same time, not just one.
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: kuber-headless-service
+spec:
+  clusterIP: None
+  selector:
+    app: http-server
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
+  type: ClusterIP
