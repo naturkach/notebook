@@ -258,7 +258,8 @@ minikube service hello-minikube1 --url
 </details>
 
 <details>
-<summary> </summary>
+<summary> daemonset </summary>
+  -- will run one pod on on each node
 </details>
 
 <details>
