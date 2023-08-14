@@ -14,3 +14,6 @@ spec:
       restartPolicy: OnFailure                                    == restartPolicy -mandatory option OnFailure/Never
 
       restartPolicy: Never -- pod will no be terminated (lke in OnFailure) so it can be debugged. job will run new pod
+
+
+# if job will pass as ok, pod will not be deleted 
