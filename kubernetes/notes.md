@@ -265,5 +265,10 @@ minikube service hello-minikube1 --url
 </details>
 
 <details>
+<summary>Job </summary>
+  A Job creates one or more Pods and will continue to retry execution of the Pods until a specified number of them successfully terminate. As pods successfully complete, the Job tracks the successful completions. When a specified number of successful completions is reached, the task (ie, Job) is complete.
+</details>
+
+<details>
 <summary> </summary>
 </details>
