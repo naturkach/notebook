@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job-with-restartpolicy-onfailure
+spec:
+  backoffLimit: 3                                                ==  terminate job (pod) after some number of failures (default is 6)
+  template:                                                      == pod will be removed, but job object - need to be removed manually
+    spec:
+      containers:
+      - name: job-with-failure
+        image: busybox
+        command: ["/bin/sh", "-c"]
+        args: ["echo 'Running Job'; sleep 5; exit 1"]
+      restartPolicy: OnFailure                                    == restartPolicy -mandatory option OnFailure/Never
+
+      restartPolicy: Never -- pod will no be terminated (lke in OnFailure) so it can be debugged. job will run new pod
