@@ -12,6 +12,7 @@
 <tr> <td>docker compose </td> <td> </td> </tr>
 <tr> <td> Run container in the background </td> <td>docker-compose up -d </td> </tr>
 <tr> <td>show running apps </td> <td>docker-compose ps </td> </tr>
-<tr> <td> </td> <td> </td> </tr>
-  
+<tr> <td>kubectl logs pi-gvvjk </td> <td> show pods logs </td> </tr>
+  <tr> <td> </td> <td> </td> </tr>
+  <tr> <td> </td> <td> </td> </tr>
   </table>
