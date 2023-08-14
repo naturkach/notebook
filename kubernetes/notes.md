@@ -251,6 +251,10 @@ after port expose like: kubectl expose deployment hello-minikube1 --type=NodePor
 ```
 minikube service hello-minikube1 --url
 ```
+
+- enable ingress:
+  <br> minikube addons list
+  <br> minikube addons enable ingress  (nginx controller)
 </details>
 
 <details>
