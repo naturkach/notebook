@@ -259,7 +259,9 @@ minikube service hello-minikube1 --url
 
 <details>
 <summary> daemonset </summary>
-  -- will run one pod on on each node
+  
+  - will run one pod on on each node
+  - DaemonSet is a Kubernetes feature that lets you run a Kubernetes pod on all cluster nodes that meet certain criteria. Every time a new node is added to a cluster, the pod is added to it, and when a node is removed from the cluster, the pod is removed.
 </details>
 
 <details>
