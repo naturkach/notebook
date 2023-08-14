@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ubuntu
+  labels:
+    app: ubuntu
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ubuntu
+  template:
+    metadata:
+      labels:
+        app: ubuntu
+    spec:
+      containers:
+      - name: ubuntu
+        image: ubuntu
+        args:
+        - /bin/sh
+        - -c
+        - touch /tmp/healthy; sleep 30; rm -rf /tmp/healthy; sleep 600
+        livenessProbe:
+          exec:
+            command:
+            - cat 
+            - /tmp/healthy                                                             # all this probs are set by default if not set dirrectly
+          initialDelaySeconds: 5 # Defaults to 0 seconds. Minimum value is 0.          # wait before start checking probe
+          periodSeconds: 5 # Default to 10 seconds. Minimum value is 1.                # how ohten to check
+          timeoutSeconds: 1 # Defaults to 1 second. Minimum value is 1.                # how long to wait probe result, more than time = failur 
+          successThreshold: 1 # Defaults to 1. Must be 1 for liveness and startup Probes. Minimum value is 1.  # how much probes to diside it's all ok
+          failureThreshold: 3 # Defaults to 3. Minimum value is 1.                     # how much to restart pod
