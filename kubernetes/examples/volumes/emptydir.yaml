@@ -1,5 +1,8 @@
 # emptyDir - some storage, created on node
 # folder path on node: /var/lib/kubelet/pods/
+# folder will be deleted with pod (will be ok if restart)
+# destination folder will be creared, so don't mount to folder with existing files
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
