@@ -1,3 +1,5 @@
+# will not register pod if health check will be failed after pod creation
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
