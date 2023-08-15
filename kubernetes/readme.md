@@ -43,7 +43,7 @@ You pay $0.10 per hour for each Amazon EKS cluster that you create.
   <tr>    <td><hr></td> <td><hr></td>  </tr>
   <tr>    <td>kubectl config get-contexts</td> <td> - if you have several clusters - to check contexts(clusters)</td>  </tr>
   <tr>    <td>kubectl config current-context</td> <td>get current context</td>  </tr>
-  <tr>    <td>kubectl use-context <somecontext></td> <td></td>  </tr> 
+  <tr>    <td>kubectl config use-context minikube</td> <td></td>  </tr> 
   <tr>    <td>kubectl config get-clusters</td> <td> what clusters we are opeqrating?</td>  </tr>
   <tr>    <td></td> <td></td>  </tr>
   <tr>    <td></td> <td></td>  </tr>
