@@ -13,6 +13,6 @@
 <tr> <td> Run container in the background </td> <td>docker-compose up -d </td> </tr>
 <tr> <td>show running apps </td> <td>docker-compose ps </td> </tr>
 <tr> <td>kubectl logs pi-gvvjk </td> <td> show pods logs </td> </tr>
-  <tr> <td> </td> <td> </td> </tr>
+  <tr> <td> docker commit 04d43fb25b37 kuber:0.1 </td> <td> create new image from running container 04d43fb25b37 </td> </tr>
   <tr> <td> </td> <td> </td> </tr>
   </table>
