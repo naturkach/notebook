@@ -17,6 +17,25 @@ of cloud resources and services.
 </details>
 
 <details>
-<summary>count = 1</summary>
+<summary>SDLC</summary>
+<br> 
+  SDLC (Software Development Life Cycle) methodologies are a set of processes and practices used by software development teams to design, develop, test, and deploy software applications. There are several SDLC methodologies, including:
+
+- Waterfall: This is a linear, sequential approach to software development, where each phase of the development process is completed before moving on to the next phase.
+
+- Agile: This is an iterative, incremental approach to software development, where the development process is broken down into small, manageable chunks called sprints.
+
+- Scrum: This is a specific type of Agile methodology that emphasizes teamwork, collaboration, and communication among team members.
+
+- Kanban: This is another Agile methodology that focuses on visualizing the workflow and limiting work in progress to improve efficiency and productivity.
+
+- Lean: This is a methodology that emphasizes reducing waste and maximizing value in the software development process.
+
+- DevOps: This is a methodology that combines software development and IT operations to improve collaboration and streamline the software development process.
+</details>
+
+
+<details>
+<summary>count = 2</summary>
 <br> 
 </details>
