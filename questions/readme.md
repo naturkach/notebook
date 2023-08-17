@@ -36,6 +36,16 @@ of cloud resources and services.
 
 
 <details>
+<summary>RPO/RTO</summary>
+<br> 
+  it's desaster recovery 
+  - RPO = dataloss - how much time from last we can los (backup 1 hour/1 day)
+  - RTO = downtime for recovery  (time from service downtime to recovery)
+
+  less RPO/RTO time = more cost for infrastructure
+</details>
+
+<details>
 <summary>count = 2</summary>
 <br> 
 </details>
