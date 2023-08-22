@@ -1,4 +1,6 @@
 
+<a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html">docs.aws.amazon.com CloudFormation UserGuide </a>
+
 <table>
   <tr><td>VpcId: !ImportValue ExportedVPCID</td><td>inported value from another stack</td></tr>
   <tr><td> IsProduction: !Equals [ !Ref Environment, 'production'] </td><td> check if equals</td></tr>
