@@ -1,34 +1,4 @@
 <details>
-<summary>Ref: -- reference to parameter</summary>
-<br> 
-  Ref: -- reference to parameter
-  Fn:Ref  / !Ref = the same
-  
-  ```
-  VPC:
-    Type: AWS::EC2::VPC
-    Properties:
-      CidrBlock: !Ref VpcCIDR
-      EnableDnsSupport: true
-      EnableDnsHostnames: true
-      Tags:
-        - Key: Name
-          Value: !Ref EnvironmentName
-
-  PublicSubnet1:
-    Type: AWS::EC2::Subnet
-    Properties:
-      VpcId: !Ref VPC
-      AvailabilityZone: !Select [ 0, !GetAZs '' ]
-      CidrBlock: !Ref PublicSubnet1CIDR
-      MapPublicIpOnLaunch: true
-      Tags:
-        - Key: Name
-          Value: !Sub ${EnvironmentName} Public Subnet (AZ1)
-```
-</details>
-
-<details>
 <summary>Mapping  - fixed variables within your CF Template</summary>
  
 ```
@@ -91,8 +61,64 @@ Conditions:
 </details>
 
 <details>
+<summary>Intrisic Functions (- Ref / GetAtt / ImportValue / Join / Sub ) </summary>
+
+  - Ref   
+  
+     ```
+     function can be leveraged to reference:
+       • Parameters => returns the value of the parameter
+       • Resources => returns the physical ID of the underlying resource (ex: EC2 ID)
+     ```
+     
+    Ref: -- reference to parameter
+  Fn:Ref  / !Ref = the same
+  
+  ```
+  VPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: !Ref VpcCIDR
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      Tags:
+        - Key: Name
+          Value: !Ref EnvironmentName
+
+  PublicSubnet1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref VPC
+      AvailabilityZone: !Select [ 0, !GetAZs '' ]
+      CidrBlock: !Ref PublicSubnet1CIDR
+      MapPublicIpOnLaunch: true
+      Tags:
+        - Key: Name
+          Value: !Sub ${EnvironmentName} Public Subnet (AZ1)
+```
+
+  - GetAtt -Attributes are attached to any resources you create
+
+     ```
+      Resources:
+        EC2Instance:
+          Type: "AWS::EC2::Instance"
+          Properties:
+            ImageId: ami-sdfs23
+            InstanceType: t2.micro
+
+        NewVolume:
+          Type: "AWS::EC2::Volume"
+          Condition: CreateProdResources
+          Properties:
+            Size: 100
+            AvailabilityZone:
+              !GetAtt EC2Instance.AvailabilityZone             --get att from ec2 instance
+     ```
+</details>
+
+<details>
 <summary>simple</summary>
 <br> count = 4
 </details>
-
       
