@@ -11,3 +11,13 @@
 ENTRYPOINT ["python", "-u", "server.py"]
 CMD ["1","5","text"]                     - default values for server.py
 ```
+
+- ADD/COPY
+  -  ADD directive is more powerful in two ways as follows:
+   
+      It can handle remote URLs<br>
+      It can also auto-extract tar files.
+
+  - COPY  It only lets you copy in a local or directory from your host (the machine-building the Docker image) into the Docker image itself
+ 
+    When to use ADD or COPY: According to the Dockerfile best practices guide, we should always prefer COPY over ADD unless we specifically need one of the two additional features of ADD. As noted above, using ADD command automatically expands tar files and specific compressed formats, which can lead to unexpected files being written to the file system in our images.
