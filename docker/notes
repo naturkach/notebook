@@ -1,0 +1,14 @@
+cgroups & namespaces
+The backbone of the Docker technology are cgroups (short for control groups) and kernel namespaces, both of which are features already provided in the Linux kernel
+
+cgroup
+With cgroups, the Linux operating system can easily manage and monitor resource allocation for a given process and set resource limits, like CPU, memory, and network limits. 
+The kernel can now control the maximum amount of resources a process gets. 
+This lets the Docker engine only give out 50% of the computer's memory, processors, or network, for example, to a running Docker container.
+
+Namespaces
+Namespaces are helpful in isolating process groups from each other. There are six default namespaces in Linux: mnt, IPC, net, usr, pid, and uts. 
+Each container will have its own namespace and processes running inside that namespace, and will not have access to anything outside its namespace.
+
+Union File System
+Docker uses the union file system to create and layer Docker images. This means all images are built on top of a base image, actions are then added to that base image.
