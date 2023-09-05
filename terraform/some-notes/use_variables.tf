@@ -69,3 +69,12 @@ common_tags = {
   }
 ################################################
 
+resource "aws_instance" "webhost" {
+  count                         = var.ec2_servers["web_servers"]["amount"]
+
+variable "ec2_servers" {
+  default = {
+    web_servers = {
+      amount   = 1,
+      ec2_type =
+------------------------------------
