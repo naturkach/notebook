@@ -65,7 +65,18 @@
 <details>
 <summary>How do you revert a specific file to previous commit?</summary>
 <br> git checkout HEAD~1 -- /path/of/the/file
+
+revert in remote repo:
+<br> git push -f origin HEAD~2:remotebranch
+<br> or:
+```
+git reset --hard HEAD~1
+git push origin main --force
+```
+  
 </details>
+
+
 
 <details>
 <summary>simple</summary>
