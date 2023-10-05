@@ -1,5 +1,5 @@
 <table>
-<tr> <td>  </td>  <td> </td> </tr>
+<tr> <td> </td>  <td></td> </tr>
 <tr> <td>  </td>  <td> </td> </tr>
 <tr> <td>  </td>  <td> </td> </tr>
 </table>
@@ -76,7 +76,16 @@ git push origin main --force
   
 </details>
 
-
+<details>
+<summary>squash - unite commits</summary>
+  
+```
+git log --oneline  - check commits
+git rebase -i HEAD~3 
+add squash insted of pick
+git rebase --continue 
+```
+</details>
 
 <details>
 <summary>simple</summary>
