@@ -18,6 +18,15 @@ kubectl delete -f pod-manifest-ver1.yaml
 
 kubectl port-forward my-web 8888:80
 
+-------------------------
+mast-have components of yaml pod definition
+apiVersion : 
+kind: 
+metadata:
+spec:
+---------------------
+
+
 cat pod-manifest-ver1.yaml 
 apiVersion : v1
 kind: Pod
