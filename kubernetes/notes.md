@@ -282,5 +282,10 @@ minikube service hello-minikube1 --url
 </details>
 
 <details>
+<summary> replicaset\replication controller </summary>
+  - the iam of RC is to controll pods and if it fails - deploy new one (it uses labels to know with pods to monitor)
+</details>
+
+<details>
 <summary> </summary>
 </details>
