@@ -1,0 +1,22 @@
+We use kubectl run command with --dry-run=client -o yaml option to create a manifest file 
+kubectl run redis --image=redis123 --dry-run=client -o yaml > redis-definition.yaml
+
+After that, using kubectl create -f command to create a resource from the manifest file
+kubectl create -f redis-definition.yaml 
+
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: redis
+  name: redis
+spec:
+  containers:
+  - image: redis123
+    name: redis
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
+
