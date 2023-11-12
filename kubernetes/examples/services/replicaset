@@ -6,7 +6,7 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      tier: frontend
+      tier: frontend                     // this label should match with label in 13 row
   template:
     metadata:
       labels:
@@ -15,3 +15,9 @@ spec:
       containers:
       - name: nginx
         image: nginx
+
+
+kubectl apply -f /root/replicaset-definition-2.yaml        -- create
+kubectl delete rs replicaset-1                             -- delete
+kubectl edit rs new-replica-set                            -- edit existing RS, than we can delete all old pods so new one with changes will be created
+kubectl scale rs new-replica-set --replicas 5              -- scale rs to 5 pods, or we can use "kubectl edit replicaset"
