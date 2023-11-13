@@ -8,6 +8,7 @@ You pay $0.10 per hour for each Amazon EKS cluster that you create.
 <tr>    <td><a href='https://kubernetes.io/docs/home/'> k8s documentation</a></td> <td></td>  </tr>
 <tr>    <td><a href='https://kubernetes.io/docs/tutorials/kubernetes-basics/'> kuber tutorial</a></td> <td></td>  </tr>
   <tr>    <td><hr></td> <td><hr></td>  </tr> 
+<tr>    <td>kubectl create namespace ns2 -oyaml --dry-run=client > ns2.yaml</td> <td>create template for deployment</td>  </tr>
 <tr>    <td>lists the pods from all the namespaces</td><td>kubectl get pods -A</td>  </tr>
 <tr>    <td>print namespaces</td><td>kubectl get namespaces</td>  </tr>
 <tr>    <td>apply template</td><td>kubectl apply -f namespace.yml</td>  </tr>
