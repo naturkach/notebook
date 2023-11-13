@@ -11,6 +11,10 @@ You pay $0.10 per hour for each Amazon EKS cluster that you create.
 <tr>    <td>kubectl create namespace ns2 -o yaml --dry-run=client > ns2.yaml <br>
             kubectl create deployment my-deploy -o yaml --dry-run=client --image=httpd:2.4-alpine --replicas=3 > my-deploy.yaml</td> <td>create template for deployment</td>  </tr>
 <tr>    <td>lists the pods from all the namespaces</td><td>kubectl get pods -A</td>  </tr>
+<tr>    <td>kubectl edit deployment nginx <br>
+            kubectl replace -f nginx.yaml</td> <td> update objects <br>replace in this way - is better way - changes will be keeped in file no not lost in future</td>  </tr>
+  <tr>    <td>--dry-run=client </td> <td>option. This will not create the resource, instead, tell you whether the resource can be created and if your command is right.</td>  </tr>  
+  <tr>    <td>-o yaml</td> <td>This will output the resource definition in YAML format on screen.</td>  </tr>
 <tr>    <td>print namespaces</td><td>kubectl get namespaces</td>  </tr>
 <tr>    <td>apply template</td><td>kubectl apply -f namespace.yml</td>  </tr>
 <tr>    <td>get deploymnets in developmant namespace</td><td> kubectl get deploymnets -n development</td>  </tr>
@@ -49,6 +53,5 @@ You pay $0.10 per hour for each Amazon EKS cluster that you create.
   <tr>    <td>kubectl config get-clusters</td> <td> what clusters we are opeqrating?</td>  </tr>
   <tr>    <td></td> <td></td>  </tr>
   <tr>    <td></td> <td></td>  </tr>
-  <tr>    <td></td> <td></td>  </tr>
-  <tr>    <td></td> <td></td>  </tr>
+  
 </table>
