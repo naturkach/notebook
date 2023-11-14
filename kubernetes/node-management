@@ -1,0 +1,35 @@
+restrict pods to be places on nodes:
+taint (node) and tollarations (pods)
+
+kubectl describe node kubemaster | grep Taint     (noschedule - means not schedule pods on this node)
+
+kubectl taint nodes node01 spray=mortein:NoSchedule             -- create taint on a node
+the effect must be NoSchedule, PreferNoSchedule or NoExecute.
+  *  Currently taint can only apply to node.
+
+tollarate pod to this tainted node:
+controlplane ~ ➜  cat bee.yaml 
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: bee
+  name: bee
+spec:
+  containers:
+  - image: nginx
+    name: bee
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+  tolerations:
+  - key: spray
+    value: mortein
+    effect: NoSchedule
+    operator: Equal
+
+
+--------------
+remove taint on node:
+kubectl taint nodes controlplane node-role.kubernetes.io/control-plane:NoSchedule-
