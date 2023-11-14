@@ -1,3 +1,6 @@
+===
+Taint \ tollarations
+
 restrict pods to be places on nodes:
 taint (node) and tollarations (pods)
 
@@ -33,3 +36,47 @@ spec:
 --------------
 remove taint on node:
 kubectl taint nodes controlplane node-role.kubernetes.io/control-plane:NoSchedule-
+
+==============================
+Label nodes
+
+kubectl label nodes node-1 size=Large
+
+in spec of pod-deffinition:
+spec:
+  nodeSelector:
+    size: Large
+
+(!) but you cant set restrinction - 'not to run on small nodes'
+==============================
+Set Node Affinity to the deployment to place the pods on node01 only.
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blue
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      run: nginx
+  template:
+    metadata:
+      labels:
+        run: nginx
+    spec:
+      containers:
+      - image: nginx
+        imagePullPolicy: Always
+        name: nginx
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: color
+                operator: In
+                values:
+                - blue
+
+====================================
