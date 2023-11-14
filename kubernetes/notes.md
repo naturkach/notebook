@@ -287,5 +287,19 @@ minikube service hello-minikube1 --url
 </details>
 
 <details>
+<summary> Deployments vs Replicaset</summary>
+  <table>
+    <tr><td>deployment</td><td>replicaset</td></tr>
+    <tr><td>High-level abstractions that manage replica sets.
+It provides additional features such as rolling updates, rollbacks, and versioning of the application. </td><td>A lower-level abstraction that manages the desired number of replicas of a pod.
+Additionally, it provides basic scaling and self-healing mechanisms.  </td></tr>
+    <tr><td>Deployment manages a template of pods and uses replica sets to ensure that the specified number of replicas of the pod is running. </td><td>ReplicaSet only manages the desired number of replicas of a pod. </td></tr>
+    <tr><td>Deployment provides a mechanism for rolling updates and rollbacks of the application, enabling seamless updates and reducing downtime. </td><td>Applications must be manually updated or rolled back </td></tr>
+    <tr><td>It provides versioning of the application, allowing us to manage multiple versions of the same application. It also makes it easy to roll back to a previous version if necessary. </td><td>ReplicaSet doesn’t provide this feature. </td></tr>
+    <tr><td> </td><td> </td></tr>
+  </table>
+</details>
+
+<details>
 <summary> </summary>
 </details>
