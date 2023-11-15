@@ -1,0 +1,24 @@
+git clone https://github.com/kodekloudhub/kubernetes-metrics-server.git
+cd kubernetes-metrics-server/
+kubectl create -f .
+
+clusterrole.rbac.authorization.k8s.io/system:aggregated-metrics-reader created
+clusterrolebinding.rbac.authorization.k8s.io/metrics-server:system:auth-delegator created
+rolebinding.rbac.authorization.k8s.io/metrics-server-auth-reader created
+apiservice.apiregistration.k8s.io/v1beta1.metrics.k8s.io created
+serviceaccount/metrics-server created
+deployment.apps/metrics-server created
+service/metrics-server created
+clusterrole.rbac.authorization.k8s.io/system:metrics-server created
+clusterrolebinding.rbac.authorization.k8s.io/system:metrics-server created
+
+kubectl top node
+NAME           CPU(cores)   CPU%   MEMORY(bytes)   MEMORY%   
+controlplane   259m         0%     1161Mi          0%        
+node01         25m          0%     318Mi           0%  
+
+kubectl top pod
+NAME       CPU(cores)   MEMORY(bytes)   
+elephant   15m          32Mi            
+lion       1m           18Mi            
+rabbit     109m         252Mi           
