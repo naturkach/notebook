@@ -6,7 +6,7 @@ kubectl scale deployment <deploymentname> --replicas 4
 kubectl autoscale deployment <deploymentname> --min=3 --max=6 --cpu-percent=80
 kubectl get hpa                                                   show Horizontal Auto Scalers
 
-kubectl set image deployment/firstdep k8sphp=naturkach/k8sphp:latest --record         change immage in deployment
+kubectl set image deployment/firstdep k8sphp=naturkach/k8sphp:latest --record         change immage in deployment (deployment file itself will not be changed)
 kubectl rollout history deployment/firstdep                       deploument history	
 kubectl rollout status deployment/firstdep                        deployment status	
 kubectl rollout undo deployment/firstdep                          rollout to previouse version
@@ -15,6 +15,11 @@ kubectl rollout restart deployment/firstdep                       redeploy deplo
 
 kubectl delete deployments firstdep                               remove firstdep deployment
 
+============================
+deployment strategies:
+recreate       -- down all old version, create new one (downtime for recraetion)
+rolling update -- update all pods one-by-one  (default stratagy)
+============================
 
 cat deploy-manifest-scail.yaml 
 apiVersion : apps/v1
