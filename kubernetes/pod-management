@@ -75,3 +75,12 @@ spec:
       ports:
         - containerPort: 80
 ------------------------------------------------
+
+spec:
+  containers:
+    - name: container-apache
+      image: naturkach/k8sphp:ver2
+      args: ["10"]           -- override CMD
+      command: ["sleep2"]    -- override ENTRYPOINT
+
+-----------------------------------------------
