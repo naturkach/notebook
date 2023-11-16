@@ -83,4 +83,16 @@ spec:
       args: ["10"]           -- override CMD
       command: ["sleep2"]    -- override ENTRYPOINT
 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: yellow
+spec:
+  containers:
+  - name: lemon
+    image: busybox
+    command:
+      - sleep
+      - "1000"
+
 -----------------------------------------------
