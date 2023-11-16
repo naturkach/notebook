@@ -9,7 +9,7 @@ show labels                             kubectl get po --show-labels
 show all pods with label env            kubectl get pods -L env   or (kubectl get pods --selector 'env=dev')
 add label anv=dev                       kubectl pods <podname> env=dev
 nodes also can be labeled               kubectl describe node minikube -- check all labels for minikube node
-
+run command from app pod:             kubectl -n elastic-stack exec -it app -- cat /log/app.log
 kubectl describe pod my-web
 ----------------------------------------
 manage pods from manifest:
@@ -96,3 +96,27 @@ spec:
       - "1000"
 
 -----------------------------------------------
+
+init container:
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: red
+  namespace: default
+spec:
+  containers:
+  - command:
+    - sh
+    - -c
+    - echo The app is running! && sleep 3600
+    image: busybox:1.28
+    name: red-container
+  initContainers:
+  - image: busybox
+    name: red-initcontainer
+    command: 
+      - "sleep"
+      - "20"
+
+============================================
