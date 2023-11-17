@@ -1,8 +1,9 @@
 
-kubectl drain node-1           - move all pods avay from node
-kubectl cordon node-2          - disable launch new pods on a node
-kubectl uncordon node-2 
-
+kubectl drain node-1                      - move all pods avay from node
+kubectl drain node01 --ignore-daemonsets
+kubectl cordon node-2                     - disable launch new pods on a node
+kubectl uncordon node-2                    - removes drain and cordon
+kubectl describe node kubemaster | grep Taint     (noschedule - means not schedule pods on this node)
 ===
 Taint \ tollarations
 
